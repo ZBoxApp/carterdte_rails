@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+envio:
+  folio: 1
+  rut_receptor: 76530890-9
+  rut_emisor: 13834853-9
+  msg_type: envio
+  setdte_id: SETDTE94528000X33X7597817X94141763
+  dte_type: 33
+  fecha_emision: 2015-05-12
+  fecha_recepcion: 2015-05-12
+  message: envio
+
+respuesta:
+  folio: 1
+  rut_receptor: 76530890-9
+  rut_emisor: 13834853-9
+  msg_type: respuesta
+  setdte_id: SETDTE94528000X33X7597817X94141763
+  dte_type: 33
+  fecha_emision: 2015-05-12
+  fecha_recepcion: 2015-05-12
+  message: respuesta

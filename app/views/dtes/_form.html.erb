@@ -1,0 +1,57 @@
+<%= form_for(@dte) do |f| %>
+  <% if @dte.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dte.errors.count, "error") %> prohibited this dte from being saved:</h2>
+
+      <ul>
+      <% @dte.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :folio %><br>
+    <%= f.number_field :folio %>
+  </div>
+  <div class="field">
+    <%= f.label :rut_receptor %><br>
+    <%= f.text_field :rut_receptor %>
+  </div>
+  <div class="field">
+    <%= f.label :rut_emisor %><br>
+    <%= f.text_field :rut_emisor %>
+  </div>
+  <div class="field">
+    <%= f.label :msg_type %><br>
+    <%= f.text_field :msg_type %>
+  </div>
+  <div class="field">
+    <%= f.label :setdte_id %><br>
+    <%= f.text_field :setdte_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dte_type %><br>
+    <%= f.number_field :dte_type %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_emision %><br>
+    <%= f.date_select :fecha_emision %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_recepcion %><br>
+    <%= f.date_select :fecha_recepcion %>
+  </div>
+  <div class="field">
+    <%= f.label :account_id %><br>
+    <%= f.number_field :account_id %>
+  </div>
+  <div class="field">
+    <%= f.label :message_id %><br>
+    <%= f.number_field :message_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

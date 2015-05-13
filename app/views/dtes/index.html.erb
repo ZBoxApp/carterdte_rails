@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Dtes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Folio</th>
+      <th>Rut receptor</th>
+      <th>Rut emisor</th>
+      <th>Msg type</th>
+      <th>Setdte</th>
+      <th>Dte type</th>
+      <th>Fecha emision</th>
+      <th>Fecha recepcion</th>
+      <th>Account</th>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dtes.each do |dte| %>
+      <tr>
+        <td><%= dte.folio %></td>
+        <td><%= dte.rut_receptor %></td>
+        <td><%= dte.rut_emisor %></td>
+        <td><%= dte.msg_type %></td>
+        <td><%= dte.setdte_id %></td>
+        <td><%= dte.dte_type %></td>
+        <td><%= dte.fecha_emision %></td>
+        <td><%= dte.fecha_recepcion %></td>
+        <td><%= dte.account_id %></td>
+        <td><%= dte.message_id %></td>
+        <td><%= link_to 'Show', dte %></td>
+        <td><%= link_to 'Edit', edit_dte_path(dte) %></td>
+        <td><%= link_to 'Destroy', dte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dte', new_dte_path %>

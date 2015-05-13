@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+envio:
+  to: FacturA@acme.com
+  from: facturador@example.com
+  message_id: 55507b344b5eb_1266d3fef0602dbec98833@iMac-de-los-BruGa-3.local.mail
+  sent_date: 2015-05-12
+  qid: C4C8A3505A5
+  account: entel
+
+respuesta:
+  to: facturador@example.com
+  from: factura@acme.com
+  message_id: 20150512134512.BA75B350479@zimbra.entel.entelcorp.com
+  sent_date: 2015-05-12
+  qid: 8BD31350611
+  account: entel

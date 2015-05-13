@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>To:</strong>
+  <%= @message.to %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @message.from %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @message.message_id %>
+</p>
+
+<p>
+  <strong>Cc:</strong>
+  <%= @message.cc %>
+</p>
+
+<p>
+  <strong>Sent date:</strong>
+  <%= @message.sent_date %>
+</p>
+
+<p>
+  <strong>Qid:</strong>
+  <%= @message.qid %>
+</p>
+
+
+<p>
+  <strong>Account:</strong>
+  <%= @message.account_id %>
+</p>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

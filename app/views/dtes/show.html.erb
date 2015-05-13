@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Folio:</strong>
+  <%= @dte.folio %>
+</p>
+
+<p>
+  <strong>Rut receptor:</strong>
+  <%= @dte.rut_receptor %>
+</p>
+
+<p>
+  <strong>Rut emisor:</strong>
+  <%= @dte.rut_emisor %>
+</p>
+
+<p>
+  <strong>Msg type:</strong>
+  <%= @dte.msg_type %>
+</p>
+
+<p>
+  <strong>Setdte:</strong>
+  <%= @dte.setdte_id %>
+</p>
+
+<p>
+  <strong>Dte type:</strong>
+  <%= @dte.dte_type %>
+</p>
+
+<p>
+  <strong>Fecha emision:</strong>
+  <%= @dte.fecha_emision %>
+</p>
+
+<p>
+  <strong>Fecha recepcion:</strong>
+  <%= @dte.fecha_recepcion %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @dte.account_id %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @dte.message_id %>
+</p>
+
+<%= link_to 'Edit', edit_dte_path(@dte) %> |
+<%= link_to 'Back', dtes_path %>
