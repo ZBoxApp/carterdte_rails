@@ -50,7 +50,7 @@ end
 
 
 gem "font-awesome-rails"
-gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap-sass', '~> 3.3'
 gem 'simple_form'
 gem 'omniauth'
 gem 'devise'
