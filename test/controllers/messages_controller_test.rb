@@ -12,6 +12,7 @@ class MessagesControllerTest < ActionController::TestCase
   def teardown
     @msg_sent = nil
     @msg_resp = nil
+    Message.all.each {|m| m.destroy }
   end
   
   def hash_msg(msg)
@@ -69,5 +70,7 @@ class MessagesControllerTest < ActionController::TestCase
     assert_equal(@system.account_id, message.account_id)
     #assert_equal(@system.account_id, message.dte.account_id)
   end
+  
+  
  
 end

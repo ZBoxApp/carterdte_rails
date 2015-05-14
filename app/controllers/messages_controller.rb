@@ -72,6 +72,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:to, :from, :message_id, :cc, :sent_date, :qid, dte_attributes: [:folio, :rut_receptor, :rut_emisor, :msg_type, :setdte_id, :dte_type, :fecha_emision, :fecha_recepcion, :message_id])
+      params.require(:message).permit(:to, :from, :message_id, :cc, :sent_date, :qid, :return_qid, dte_attributes: [:folio, :rut_receptor, :rut_emisor, :msg_type, :setdte_id, :dte_type, :fecha_emision, :fecha_recepcion, :message_id])
     end
 end
