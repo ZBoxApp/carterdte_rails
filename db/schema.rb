@@ -11,13 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514131853) do
+ActiveRecord::Schema.define(version: 20150518112638) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "zendesk_id"
+    t.boolean  "zbox_mail",   default: false
+    t.boolean  "dte_default", default: false
+  end
+
+  add_index "accounts", ["zendesk_id"], name: "index_accounts_on_zendesk_id"
+
+  create_table "domains", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "domains", ["account_id"], name: "index_domains_on_account_id"
 
   create_table "dtes", force: :cascade do |t|
     t.integer  "folio"
@@ -54,6 +68,25 @@ ActiveRecord::Schema.define(version: 20150514131853) do
   add_index "messages", ["from"], name: "index_messages_on_from"
   add_index "messages", ["to"], name: "index_messages_on_to"
 
+  create_table "mta_logs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "search_messages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "servers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "servers", ["account_id"], name: "index_servers_on_account_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -74,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150514131853) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "zendesk_account_id"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id"

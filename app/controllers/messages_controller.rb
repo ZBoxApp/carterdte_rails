@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
     @messages = Message.all
   end
 
+
   # GET /messages/1
   # GET /messages/1.json
   def show
@@ -25,10 +26,10 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    # We only allow from system type useres    
+    # We only allow from system type useres
     return head :forbidden unless current_user.system?
     @message = current_account.messages.new(message_params)
-    
+
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: 'Message was successfully created.' }

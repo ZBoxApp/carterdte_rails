@@ -49,10 +49,13 @@ group :development, :test do
 end
 
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'simple_form'
 gem 'omniauth'
 gem 'devise'
-gem "figaro"
+gem 'figaro'
 gem 'omniauth-zendesk'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+gem 'zendesk_api'
