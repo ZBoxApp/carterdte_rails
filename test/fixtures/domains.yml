@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  account_id: 1
+domain1:
+  name: x.com
+  account: zbox_client
 
-two:
-  name: MyString
-  account_id: 1
+domain2:
+  name: y.com
+  account: zbox_client

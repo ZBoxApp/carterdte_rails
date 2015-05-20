@@ -6,3 +6,13 @@ entel:
 itlinux:
   name: ITLinux
   zendesk_id: 123
+
+zbox_client:
+  name: zbox_client
+  zendesk_id: 1234
+  zbox_mail: true
+
+itlinux_client:
+  name: itlinux_client
+  zendesk_id: 12345
+  

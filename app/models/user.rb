@@ -12,12 +12,20 @@ class User < ActiveRecord::Base
     role == "admin"
   end
 
+  def domains_name
+    account.domains.map(&:name)
+  end
+
   def itlinux?
     !zbox_mail?
   end
 
   def zbox_mail?
     account.zbox_mail?
+  end
+
+  def servers_name
+    account.servers.map(&:name)
   end
 
   def system?

@@ -3,6 +3,8 @@ class Account < ActiveRecord::Base
   has_many :users, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :dtes, dependent: :destroy
+  has_many :servers, dependent: :destroy
+  has_many :domains, dependent: :destroy
 
   validates_presence_of :name
   validates_uniqueness_of :zendesk_id

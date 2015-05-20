@@ -8,7 +8,7 @@ system:
   email: caterdte_smtp_filter@entel.cl
   account: entel
   role: system
-  
+
 # column: value
 #
 admin:
@@ -17,5 +17,15 @@ admin:
   role: admin
   name: Patricio Bruna
   image: http://itlinux.zendesk.com/system/photos/2100/3571/Patricio_Bruna_thumb.jpeg
-  
-#  column: value
+
+zbox_user:
+  email: zbox@example.com
+  account: zbox_client
+  role: end-user
+  name: zbox user
+
+itlinux_user:
+  email: itlinux@example.com
+  account: itlinux_client
+  role: end-user
+  name: itlinux user
