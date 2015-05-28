@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
 
   has_many :users, dependent: :destroy
-  has_many :messages, dependent: :destroy
+  has_many :dte_messages, dependent: :destroy
   has_many :dtes, dependent: :destroy
   has_many :servers, dependent: :destroy
   has_many :domains, dependent: :destroy
@@ -9,8 +9,28 @@ class Account < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :zendesk_id
 
+  def admin?
+    users.where(role: 'admin').any?
+  end
+
+  def jail
+    return false if admin?
+    return zbox_jail if zbox_mail?
+    itlinux_jail
+  end
+
   def itlinux?
     !zbox_mail?
+  end
+
+  def itlinux_jail
+    servers.map { |s| { 'host' => s.name } }
+  end
+
+  def zbox_jail
+    from_domain = domains.map { |d| { 'from_domain' => d.name } }
+    to_domain = domains.map { |d| { 'to_domain' => d.name } }
+    from_domain + to_domain
   end
 
   def self.get_info_from_zendesk(zendesk_id)

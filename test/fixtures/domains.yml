@@ -7,3 +7,7 @@ domain1:
 domain2:
   name: y.com
   account: zbox_client
+
+ind:
+  name: ind.cl
+  account: zbox_client

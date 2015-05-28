@@ -31,9 +31,9 @@
         <td><%= dte.fecha_emision %></td>
         <td><%= dte.fecha_recepcion %></td>
         <td><%= dte.account_id %></td>
-        <td><%= dte.message_id %></td>
+        <td><%= dte.dte_message_id %></td>
         <td><%= link_to 'Show', dte %></td>
-        <td><%= link_to 'Edit', edit_dte_path(dte) %></td>
+        <td><%= link_to 'Edit', edit_dte_message_path(dte) %></td>
         <td><%= link_to 'Destroy', dte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

@@ -18,4 +18,32 @@ class AccountTest < ActiveSupport::TestCase
     assert(!account.itlinux?)
   end
 
+  test 'admin? shoul return true if the account has an admin user' do
+    admin = accounts(:itlinux)
+    noadmin = accounts(:zbox_client)
+    assert(admin.admin?, 'Tiene que ser admin')
+    assert(!noadmin.admin?, 'No tiene que ser admin')
+  end
+
+  test 'when admin jail should return false' do
+    account = accounts(:itlinux)
+    assert !account.jail, 'No tiene que estar enjaulado'
+  end
+
+  test 'zbox jail return a hash with keys from_domain and to_domain' do
+    account = accounts(:zbox_client)
+    jail = account.jail
+    assert jail.is_a?(Array), "from_domain tiene que ser Array"
+    assert_equal (account.domains.size * 2), jail.size
+  end
+
+  test 'itlinux jail return a hash with servers' do
+    account = accounts(:itlinux_client)
+    jail = account.jail
+    assert jail.is_a?(Array), "hosts tiene que ser Array"
+    jail.each do |h|
+      assert account.servers.map(&:name).include?(h['host'])
+    end
+  end
+
 end

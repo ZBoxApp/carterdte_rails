@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518112638) do
+ActiveRecord::Schema.define(version: 20150527155434) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -33,25 +33,7 @@ ActiveRecord::Schema.define(version: 20150518112638) do
 
   add_index "domains", ["account_id"], name: "index_domains_on_account_id"
 
-  create_table "dtes", force: :cascade do |t|
-    t.integer  "folio"
-    t.string   "rut_receptor"
-    t.string   "rut_emisor"
-    t.string   "msg_type"
-    t.string   "setdte_id"
-    t.integer  "dte_type"
-    t.date     "fecha_emision"
-    t.date     "fecha_recepcion"
-    t.integer  "message_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "dtes", ["dte_type"], name: "index_dtes_on_dte_type"
-  add_index "dtes", ["rut_emisor"], name: "index_dtes_on_rut_emisor"
-  add_index "dtes", ["rut_receptor"], name: "index_dtes_on_rut_receptor"
-
-  create_table "messages", force: :cascade do |t|
+  create_table "dte_messages", force: :cascade do |t|
     t.string   "to"
     t.string   "from"
     t.text     "message_id"
@@ -64,9 +46,27 @@ ActiveRecord::Schema.define(version: 20150518112638) do
     t.string   "qid"
   end
 
-  add_index "messages", ["account_id"], name: "index_messages_on_account_id"
-  add_index "messages", ["from"], name: "index_messages_on_from"
-  add_index "messages", ["to"], name: "index_messages_on_to"
+  add_index "dte_messages", ["account_id"], name: "index_dte_messages_on_account_id"
+  add_index "dte_messages", ["from"], name: "index_dte_messages_on_from"
+  add_index "dte_messages", ["to"], name: "index_dte_messages_on_to"
+
+  create_table "dtes", force: :cascade do |t|
+    t.integer  "folio"
+    t.string   "rut_receptor"
+    t.string   "rut_emisor"
+    t.string   "msg_type"
+    t.string   "setdte_id"
+    t.integer  "dte_type"
+    t.date     "fecha_emision"
+    t.date     "fecha_recepcion"
+    t.integer  "dte_message_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "dtes", ["dte_type"], name: "index_dtes_on_dte_type"
+  add_index "dtes", ["rut_emisor"], name: "index_dtes_on_rut_emisor"
+  add_index "dtes", ["rut_receptor"], name: "index_dtes_on_rut_receptor"
 
   create_table "mta_logs", force: :cascade do |t|
     t.datetime "created_at", null: false

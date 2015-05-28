@@ -7,3 +7,7 @@ server1:
 server2:
   name: server2
   account: itlinux_client
+
+forus:
+  name: mail.caja18.cl
+  account: itlinux_client
