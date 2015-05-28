@@ -6,6 +6,7 @@ class Message
   def initialize(id: nil, source: nil, account_id: nil)
     @id = id
     @account_id = account_id
+    @qids = nil
     get_message_data source
   end
 
@@ -13,7 +14,32 @@ class Message
     Account.find account_id
   end
 
+  def delivery_status
+    deliver_trace = logtrace.select { |l| l.qid == qids.first }
+    deliver_log = deliver_trace.select { |l| l.tags.include?('relay') }.first
+    deliver_log.result
+  end
+
+  # Devuelve un arreglo con la traza de logs
+  # Ordenado del mas nuevo al mas viejo
+  def logtrace
+    return @logtrace unless @trace.nil?
+    s_date = timestamp.to_date.yesterday
+    e_date = timestamp.to_date.tomorrow
+    trace = []
+    qids.each do |qid|
+      query = SearchLogQuery.by_qid(qid)
+      search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
+      result = search_log.execute
+      trace << result.hits.map { |r| MtaLog.new(r._source) }
+    end
+    @logtrace = trace.flatten
+  end
+
+  # Devuelve un arreglo con todos los QIDs del Message
+  # Ordenado de mas nuevo a mas viejo
   def qids
+    return @qids unless @qids.nil?
     s_date = timestamp.to_date.yesterday
     e_date = timestamp.to_date.tomorrow
     # TODO: Sacar este bug en Julio
@@ -22,7 +48,7 @@ class Message
     query = SearchLogQuery.by_messageid(msgid)
     search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
     result = search_log.execute
-    result.hits.map { |r| r._source.qid }
+    @qids = result.hits.map { |r| r._source.qid }
   end
 
   def self.find(account, id)

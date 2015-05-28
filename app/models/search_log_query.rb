@@ -15,6 +15,10 @@ module SearchLogQuery
     ]
   end
 
+  def self.by_qid(qid = nil)
+    { 'qid' => qid }
+  end
+
   def self.amavisd_by_emails(from: nil, to: nil)
     [{ 'tags' => 'amavis' },
      { 'tags' => 'result' },

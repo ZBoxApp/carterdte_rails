@@ -71,10 +71,25 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal q_from_es.sort, qids.sort
   end
 
-  test 'delivery_status should return the status you know what' do
-    assert false
+  test 'The first qid must be the last processed (newest date)' do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    qids = msg.qids
+    assert_equal 'BCD8B284DBE', qids.first
   end
 
+  test 'delivery_status should return the status you know what' do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    assert_equal 'sent', msg.delivery_status
+  end
 
+  test 'logtrace should return an arrays of logs objects' do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    logtrace = msg.logtrace
+    assert logtrace.first.is_a?(MtaLog)
+    log = logtrace.first
+    assert_equal Time.parse('2015-05-16T23:59:58.856Z'), log.timestamp
+    assert log.message, 'Deberia tener un mensaje'
+    assert msg.qids.include?(log.qid)
+  end
 
 end
