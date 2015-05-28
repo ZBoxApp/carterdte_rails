@@ -82,6 +82,11 @@ class MessageTest < ActiveSupport::TestCase
     assert_equal 'sent', msg.delivery_status
   end
 
+  test 'delivery_status should work with multiples relays' do
+    msg = Message.find(@admin_account, 'AU2Yt-LViGpHTlo-5dPJ')
+    assert_equal 'sent', msg.delivery_status
+  end
+
   test 'logtrace should return an arrays of logs objects' do
     msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
     logtrace = msg.logtrace

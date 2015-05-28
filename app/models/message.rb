@@ -14,10 +14,25 @@ class Message
     Account.find account_id
   end
 
+  def delivery_scores
+    scores = Hash.new(0)
+    delivery_logs.each do |l|
+      scores[l.result] += 1
+    end
+    scores
+  end
+
   def delivery_status
+    scores = delivery_scores
+    return 'sent' if scores['sent'] == to.size
+    return 'partial' if scores['sent'] > 0 && scores['sent'] < to.size
+    return 'enqueued' if scores['sent'] == 0 && scores['bounce'] == 0
+    'failed'
+  end
+
+  def delivery_logs
     deliver_trace = logtrace.select { |l| l.qid == qids.first }
-    deliver_log = deliver_trace.select { |l| l.tags.include?('relay') }.first
-    deliver_log.result
+    deliver_trace.select { |l| l.tags.include?('relay') }
   end
 
   # Devuelve un arreglo con la traza de logs
