@@ -1,25 +1,36 @@
-FROM phusion/passenger-ruby21:0.9.15
+# TODO Hacer que delayed_job suba como servicio
+
+FROM phusion/passenger-ruby21:0.9.12
 MAINTAINER Patricio Bruna <pbruna@itlinux.cl>
 
 RUN rm -f /etc/service/nginx/down
 RUN rm -f /etc/service/sshd/down
-RUN mkdir -p /home/app/zimbra_pre_auth_router
-RUN mkdir -p /home/app/zimbra_pre_auth_router/tmp
+RUN mkdir -p /home/app/carterapp
+RUN mkdir -p /home/app/carterapp/tmp
 
-WORKDIR /home/app/carterdte_rails
-ADD Gemfile /home/app/carterdte_rails/
-ADD Gemfile.lock /home/app/carterdte_rails/
+WORKDIR /home/app/carterapp
+ADD Gemfile /home/app/carterapp/
+ADD Gemfile.lock /home/app/carterapp/
 RUN bundle install
 
 ADD config/pbruna-ssh-key.pub /tmp/your_key
 RUN cat /tmp/your_key >> /root/.ssh/authorized_keys && rm -f /tmp/your_key
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Aqui para que no moleste al cache
-ADD . /home/app/carterdte_rails
-ADD config/carterdte_rails-nginx.conf /etc/nginx/sites-enabled/default
+# Aquí para que no moleste al cache
+ADD . /home/app/carterapp
+ADD config/carterapp-nginx.conf /etc/nginx/sites-enabled/carterapp-nginx.conf
 ADD config/nginx-env.conf /etc/nginx/main.d/nginx-env.conf
 
-RUN chown 9999:9999 -R /home/app/carterdte_rails
+
+ENV RAILS_ENV production
+
+# RUN rake db:migrate
+# RUN rake db:seed
+RUN rake assets:precompile
+# RUN rake assets:sync
+RUN rake tmp:create
+RUN rake tmp:clear
+RUN chown 9999:9999 -R /home/app/carterapp
 
 CMD ["/sbin/my_init"]
