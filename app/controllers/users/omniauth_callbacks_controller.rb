@@ -3,7 +3,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def zendesk
       # You need to implement the method below in your model (e.g. app/models/user.rb)
-      Rails.logger.debug("----- AQUI #{request.env['omniauth.auth'].extra.raw_info.organization_id}")
       @user = User.from_omniauth(request.env["omniauth.auth"])
 
       if @user.persisted?

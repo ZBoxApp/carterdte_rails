@@ -1,0 +1,5 @@
+<td class="td-name">
+  <%= link_to object.name, send("#{object.class.to_s.downcase}_path", object) %>
+  <br>
+  <small> <%= object.description %> </small>
+</td>

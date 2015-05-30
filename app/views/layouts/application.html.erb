@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CarterdteRails</title>
+  <title>ZboxManager</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Salir", destroy_user_session_path(), method: :delete %>
-<%= yield %>
+	<%= render "shared/header"%>
+	<div id="wrapper">
+    
+    <% if flash[:notice] %>
+       <div class="alert flash-success">
+         <i class="fa fa-check-circle-o"></i>
+         <%= I18n.t("messages.save_success") %>
+       </div>
+    <% end %>
+    <div class="content animate-panel">
+        <%= yield %>
+    </div>
+	</div>
 
 </body>
 </html>

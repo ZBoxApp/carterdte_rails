@@ -1,0 +1,13 @@
+<div class="panel-header-search">
+  <%= form_tag('/search', remote: true) do %>
+    <div class="input-group">
+      <%= hidden_field_tag 'search[object]', object_name %>
+      <%= text_field_tag 'search[query]', nil, class: "form-control input-xs", placeholder: placeholder %>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+          <span class="fa fa-search"></span>
+        </button>
+      </span>
+    </div>
+  <% end -%>
+</div>

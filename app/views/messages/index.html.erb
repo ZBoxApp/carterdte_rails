@@ -1,0 +1,34 @@
+<%= render partial: "messages/index/search" %>
+
+<div class="hpanel">
+  <div class="panel-heading hbuilt">
+    <div class="pull-right" style="padding-right: 10px;">
+      <h4>
+        <%= number_to_human @messages_search.total_hits %> mensajes
+      </h4>
+    </div>
+    <ul class="list-inline delivery-status-explain">
+      <li><span class="label delivery-sent">enviado</span></li>
+      <li><span class="label delivery-enqueued">procesando</span></li>
+      <li><span class="label delivery-partial">envio parcial</span></li>
+      <li><span class="label delivery-failed">con falla</span></li>
+    </ul>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table cellpadding="1" cellspacing="1" class="table">
+          <thead>
+          <tr>
+              <th></th>
+              <th>De</th>
+              <th>Para</th>
+              <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            <%= render partial: "messages/index/message", collection: @messages %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

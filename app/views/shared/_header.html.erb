@@ -1,0 +1,30 @@
+<div id="header">
+    <div class="color-line">
+    </div>
+    <div id="logo" class="light-version">
+        <% if current_account.admin? %>
+          <%= image_tag "logo-zbox.png", :title => "CarterApp", :class => "logo" %>
+        <% else %>
+        <%= image_tag "logo-itlinux.png", :title => "CarterApp", :class => "logo" %>
+        <% end %>
+    </div>
+    <nav role="navigation">
+        <div class="small-logo">
+            <span class="text-primary">CarterApp</span>
+        </div>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown" style='padding: 20px'>
+                    Hola <%= current_user.name %>
+                </li>
+                <li class="dropdown">
+                  <% if current_user %>
+                    <%= link_to destroy_user_session_path() do %>
+                      <i class="pe-7s-upload pe-rotate-90"></i>
+                    <% end %>
+                  <% end %>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

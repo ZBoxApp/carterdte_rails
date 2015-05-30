@@ -16,7 +16,15 @@ class MtaLog
 
   def process_responce(raw)
     raw['timestamp'] = Time.parse raw['@timestamp']
+    raw['clean_message'] = parse_message raw['message']
     raw
+  end
+
+  def parse_message(message)
+    ary = message.split(/ /)
+    ary.shift
+    ary.shift
+    ary.join(" ")
   end
 
 end

@@ -1,3 +1,56 @@
-// Place all the styles related to the Messages controller here.
+// Place all the styles related to the messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$bg-success-color: #74d348;
+$bg-error-color: #c0392b;
+$bg-warning-color: #e67e22;
+$bg-info-color: #3498db;
+
+.message-from {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.message-to {
+  font-size: 14px;
+}
+
+.delivery-info {
+  margin-left: 10px;
+}
+
+.delivery-status-explain {
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .label {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+}
+
+.delivery-status {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 2;
+  width: 10px;
+}
+
+.delivery-sent {
+  background-color: $bg-success-color;
+}
+
+.delivery-failed {
+  background-color: $bg-error-color;
+}
+
+.delivery-partial {
+  background-color: $bg-warning-color;
+}
+
+.delivery-enqueued {
+  background-color: $bg-info-color;
+}

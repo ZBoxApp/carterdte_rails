@@ -1,0 +1,47 @@
+es-CL:
+  helpers:
+      submit:
+          account:
+              create: "Guardar"
+              update: "Guardar"
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'requerido'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+        default_message: "Por favor revisar los siguientes problemas:"
+    labels:
+        account:
+            name: 'Nombre'
+            zimbra_mapping_id: 'ID Cliente'
+            anual: 'Plan anual'
+            mbx_basic_quota: 'Casillas Básicas'
+            mbx_pro_quota: 'Casillas Profesional'
+            mbx_premium_quota: 'Casillas Premium'
+            renewal_month: 'Mes de renovación'
+    placeholders:
+        account:
+            name: 'Razón social de la empresa'
+            zimbra_mapping_id: 'Ingresa el RUT de la empresa'
+            mbx_basic_quota: 'Cuota de casillas básicas'
+            mbx_pro_quota: 'Cuota de casillas profesionales'
+            mbx_premium_quota: 'Cuota de casillas premium'
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+

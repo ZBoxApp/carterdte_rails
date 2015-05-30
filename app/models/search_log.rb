@@ -17,7 +17,9 @@ class SearchLog
   def initialize(jail: nil, query: nil, s_date: nil, e_date: nil)
     @raw_query = to_term_filter(query)
     @jail = jail
-    set_dates(s_date, e_date)
+    #set_dates(s_date, e_date)
+    @s_date = s_date
+    @e_date = e_date
     @index = set_index_name
     @query = build_query
   end
@@ -71,8 +73,8 @@ class SearchLog
   def date_range_filter
     # Si ambas son nil, ajustamos la fecha para hoy
     q_hash = { '@timestamp' => {} }
-    q_hash['@timestamp']['gte'] = @s_date
-    q_hash['@timestamp']['lte'] = @e_date
+    q_hash['@timestamp']['gte'] = @s_date unless @s_date.nil?
+    q_hash['@timestamp']['lte'] = @e_date unless @e_date.nil?
     q_hash
   end
 
@@ -117,7 +119,8 @@ class SearchLog
 
   def set_index_name
     date = dated_index(s_date, e_date)
-    "logstash-#{date}"
+    #"logstash-#{date}"
+    'logstash-201*'
   end
 
   # Nos permite pasar un hash de busqueda estilo

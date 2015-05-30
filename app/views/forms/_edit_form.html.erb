@@ -1,0 +1,21 @@
+<div class="col-lg-12">
+  <div class="hpanel forum-box">
+      <div class="panel-heading hbuilt">
+          <div class="heading-buttons">
+            <%= cancel_button %>
+          </div>
+          <%= "#{I18n.t("actions.edit").titleize} #{controller_name.singularize}" %>
+      </div>
+      <div class="panel-body">
+  		  <%= simple_form_for object, html: { class: 'form-horizontal' } do |f| %>
+          <%= display_inputs(object: object, f: f, action: "edit") %>
+  		    <div class="form-group">
+      			<div class="col-sm-8 col-sm-offset-2">
+      				<%= f.button :submit, class: "btn btn-primary" %>
+      				<%= cancel_button %>	
+      			</div>
+          </div>
+  		  <% end %>
+      </div>
+  </div>
+</div>

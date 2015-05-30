@@ -1,0 +1,14 @@
+<div id="<%= id %>" class="col-md-<%= panel_size || 12 %> ">
+  <div class="hpanel">
+     <div class="panel-heading hbuilt">
+       <div class="pull-right">
+         <%= render_buttons buttons %>
+       </div>
+       <%= render_title title %>
+       <%= render_panel_search search %>
+     </div>
+    <div class="panel-body">
+      <%= render_body body[:partial], body[:locals]%>
+    </div>
+  </div>
+</div>

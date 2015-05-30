@@ -1,0 +1,22 @@
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <%= render :partial => 'shared/profile' %>
+
+
+        <ul class="nav" id="side-menu">
+            <%= side_menu_link(controller: "dashboards")%>
+			      <%= side_menu_link(controller: "accounts") if current_user.global_admin? %>
+			      <%= side_menu_link(controller: "domains")%>
+			      <%= side_menu_link(controller: "mailboxes")%>
+            <li><a href="#"><span class="nav-label">Documentación</span></a></li>
+            <li>
+                <a href="#"><span class="nav-label">Mi Empresa</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="panels.html">Administradores</a></li>
+                    <li><a href="typography.html">Facturación</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>

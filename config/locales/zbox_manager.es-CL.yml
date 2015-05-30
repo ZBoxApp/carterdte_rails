@@ -1,0 +1,46 @@
+es-CL:
+  controllers:
+    dashboards:
+      name: dashboards
+      description: 
+    accounts:
+      name: cuentas
+      description: Las cuentas son los que pagan el servicio
+    domains:
+      name: dominios
+    mailboxes:
+      name: casillas
+  actions:
+    add: agregar
+    cancel: cancelar
+    edit: editar
+  
+  view:
+    account: cuenta
+  
+  messages:
+    account_with_debt: "Con Deuda"
+    account_no_debt: "Sin Deuda"
+    add_account: "Agregar cuenta"
+    add_first: "Agrega el primero"
+    basic: "Básica"
+    buy: "Comprar"
+    customer: "Cliente"
+    domains: "Dominios"
+    empty: "No existen"
+    edit: "Editar"
+    free: "Libre"
+    general_information: "Informacion general"
+    login_incorrect: "Dirección de correo o contraseña invalida"
+    login_timeout: "Su sesión a expirado, por favor ingrese nuevamente"
+    mailboxes: "Casillas"
+    professional: "Profesional"
+    premium: "Premium"
+    reseller: "Reseller"
+    save_error: "No se pudo guardar. Por favor corrija los errores"
+    save_success: "Datos guardados correctamente"
+    search_account_placeholder: "Buscar cuenta por nombre o rut"
+    total: "Total"
+    type: "Tipo"
+    trial_account: "Trial"
+    

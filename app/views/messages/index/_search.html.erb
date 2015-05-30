@@ -1,0 +1,51 @@
+<div class="hpanel">
+    <div class="panel-body">
+        <a class="small-header-action" href="">
+            <div class="clip-header">
+                <i class="fa fa-arrow-up"></i>
+            </div>
+        </a>
+        <%= form_tag '', method: :get, class: "" do %>
+        <div class='row' style="margin-top:10px">
+          <div class="col-md-6">
+            <div class="input-group m-b">
+              <span class="input-group-addon">De</span>
+              <%= text_field_tag(
+                  :from,
+                  params[:from],
+                  placeholder: "remitente@domain.com",
+                  class: "form-control"
+              ) %>
+              <span class="input-group-addon">Para</span>
+              <%= text_field_tag(
+                  :to,
+                  params[:to],
+                  placeholder: "para@domain.com",
+                  class: "form-control"
+              ) %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="input-daterange input-group m-b" id="datepicker">
+              <%= text_field_tag(
+                  :s_date,
+                  params[:s_date],
+                  placeholder: I18n.l(Date.today),
+                  class: "form-control"
+              ) %>
+              <span class="input-group-addon">hasta</span>
+              <%= text_field_tag(
+                  :e_date,
+                  params[:e_date],
+                  placeholder: I18n.l(Date.today),
+                  class: "form-control"
+              ) %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <%= submit_tag "Buscar!", class: "btn btn-primary", style: "padding-left: 20px; padding-right: 20px; " %>
+          </div>
+        </div>
+        <% end %>
+    </div>
+</div>

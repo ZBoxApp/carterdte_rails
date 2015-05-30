@@ -1,0 +1,5 @@
+<li class="<%= active ? "active" : "" %>">
+	<%= link_to(send("#{controller}_path")) do %>
+		<span class="nav-label"><%= (I18n.t "controllers.#{controller}.name") %></span>
+	<% end %>
+</li>

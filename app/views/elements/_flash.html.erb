@@ -1,0 +1,13 @@
+<% if flash[:error] %>
+   <div class="alert flash-error">
+     <i class="fa fa-exclamation-circle"></i>
+     <%= I18n.t("messages.save_error") %>
+   </div>
+<% end %>
+
+<% if flash[:notice] %>
+   <div class="alert flash-success">
+     <i class="fa fa-check-circle-o"></i>
+     <%= I18n.t("messages.save_success") %>
+   </div>
+<% end %>
