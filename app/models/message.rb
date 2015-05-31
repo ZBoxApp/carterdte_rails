@@ -48,6 +48,9 @@ class Message
       result = search_log.execute
       trace << result.hits.map { |r| MtaLog.new(r._source) }
     end
+    trace.each do |l|
+      l.sort! {|a,b| b.timestamp <=> a.timestamp }
+    end
     @logtrace = trace.flatten
   end
 
