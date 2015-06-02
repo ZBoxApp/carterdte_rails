@@ -1,17 +1,18 @@
 class Message
 
   attr_reader :id, :messageid, :from, :to, :from_domain, :to_domain, :result
-  attr_reader :status, :size, :account_id, :timestamp
+  attr_reader :status, :size, :account_id, :timestamp, :logtrace, :account
 
   def initialize(id: nil, source: nil, account_id: nil)
     @id = id
     @account_id = account_id
+    @account = Account.find account_id
     @qids = nil
     get_message_data source
   end
 
-  def account
-    Account.find account_id
+  def delay
+    logtrace.first.timestamp - logtrace.last.timestamp
   end
 
   def delivery_scores
@@ -38,7 +39,7 @@ class Message
   # Devuelve un arreglo con la traza de logs
   # Ordenado del mas nuevo al mas viejo
   def logtrace
-    return @logtrace unless @trace.nil?
+    return @logtrace unless @logtrace.nil?
     s_date = timestamp.to_date.yesterday
     e_date = timestamp.to_date.tomorrow
     trace = []
@@ -74,12 +75,20 @@ class Message
     msg = search.hits.first
     Message.new(id: msg._id, source: msg._source, account_id: account.id)
   end
+  
+  def self.from_by_page(pnumber = nil)
+    return 0 if pnumber.nil?
+    return 0 if pnumber <= 1
+    from = ((pnumber.to_i - 1) * SearchLog::SEARCH_SIZE) + 1
+    from
+  end
 
-  def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil)
+  def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil, page: 1)
     fail '<Message#search> Account nil' unless account.is_a? Account
     query = SearchLogQuery.amavisd_by_emails(from: from, to: to)
+    Rails.logger.debug "---- AQUI #{s_date} y #{e_date}"
     search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
-    result = search_log.execute
+    result = search_log.execute(from_by_page(page))
     result.results = result.hits.map { |r| Message.new(id: r._id, source: r._source, account_id: account.id) }
     result
   end
@@ -88,9 +97,9 @@ class Message
   def get_message_data(source)
     @messageid = source.messageid
     @from = source.from
-    @to = source.to.is_a?(Array) ? source.to : [source.to]
+    @to = source.to.is_a?(Array) ? source.to.uniq : [source.to]
     @from_domain = source.from_domain
-    @to_domain = source.to_domain.is_a?(Array) ? source.to_domain : [source.to_domain]
+    @to_domain = source.to_domain.is_a?(Array) ? source.to_domain.uniq : [source.to_domain]
     @result = source.result
     @status = source.status
     @size = source['size'].to_i

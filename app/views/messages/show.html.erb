@@ -1,9 +1,33 @@
-<div class="hpanel">
-  <div class="panel-heading hbuilt">
+<div class="row">
+
+  <div class="col-md-12 animated-panel ZoomIn">
+    <div class="hpanel">
+      <div class="panel-heading">
+        <i class="pe-7s-back" style="font-size: 14px"></i>
+        <%= link_to "Volver", :back %>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <%= render partial: 'messages/show/message_header' %>
+          <%= render partial: 'messages/show/message_stats' %>
+        </div>
+      </div>
+    </div>
   </div>
+
+</div>
+
+<div class="hpanel">
   <div class="panel-body">
     <div class="table-responsive">
-      <table cellpadding="1" cellspacing="1" class="table mtalog">
+      <table cellpadding="1" cellspacing="1" class="table table-striped mtalog">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Host</th>
+            <th>Log</th>
+          </tr>
+        </thead>
         <tbody>
           <%= render partial: "messages/show/mtalog", collection: @message.logtrace %>
         </tbody>

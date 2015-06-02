@@ -1,0 +1,20 @@
+<div class="col-md-3">
+  <table class="table table-message-stats">
+    <tr>
+      <td class="header-field">Tamaño</td>
+      <td class="header-value"><%= number_to_human_size @message.size %></td>
+    </tr>
+    <tr>
+      <td class="header-field">Tiempo</td>
+      <td class="header-value"><%= @message.delay %> segundos</td>
+    </tr>
+    <tr>
+      <td class="header-field">Estado</td>
+      <td class="header-value">
+        <span class="label-delivery delivery-<%= @message.delivery_status %>">
+          <%= delivery_status_text @message %>
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527155434) do
+ActiveRecord::Schema.define(version: 20150602093636) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150527155434) do
     t.integer  "zendesk_id"
     t.boolean  "zbox_mail",   default: false
     t.boolean  "dte_default", default: false
+    t.boolean  "admin",       default: false
   end
 
   add_index "accounts", ["zendesk_id"], name: "index_accounts_on_zendesk_id"

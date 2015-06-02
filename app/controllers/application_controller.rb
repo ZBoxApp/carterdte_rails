@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def current_account
-    current_user.account
+    @current_account ||= current_user.account
+    @current_account
   end
 
   # Because we are no usign Devise :database_authenticatable

@@ -21,10 +21,21 @@ class SearchLogResult
   end
 
   def page(pnumber = 1)
-    return @search.execute(@query) unless pnumber.is_a? Fixnum
-    return @search.execute(@query) if pnumber <= 1
+    return self if pnumber == current_page
+    return self unless pnumber.is_a? Fixnum
+    return self if pnumber <= 1
     from = ((pnumber - 1) * search_size) + 1
     @search.execute(from, search_size)
+  end
+
+  def next_page
+    return false if current_page == pages
+    current_page + 1
+  end
+
+  def previous_page
+    return false if current_page == 1
+    current_page - 1
   end
 
 end

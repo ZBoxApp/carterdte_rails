@@ -4,11 +4,11 @@
     <td class="delivery-info">
       <span class="message-from"><%= truncate(message.from, length: 40) %></span>
       <p style="margin-top: 5px;">
-        <%= I18n.l message.timestamp, format: :log %>
+        <%= I18n.l message.timestamp, format: :short_seconds %>
       </p>
     </td>
     <td>
-      <span class="message-to"><%= message.to.join(", ") %></span><br/>
+      <span class="message-to"><%= display_message_to message %></span><br/>
       <span class="label label-default"> <%= number_to_human_size message.size %></span>
     </td>
     <td> <%= link_to "Ver traza", message_path(message.id), class: 'btn btn-default' %> </td>

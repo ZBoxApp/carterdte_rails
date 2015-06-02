@@ -97,4 +97,10 @@ class MessageTest < ActiveSupport::TestCase
     assert msg.qids.include?(log.qid)
   end
 
+  test 'delay should return the time taked to process the message' do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    r = msg.logtrace.first.timestamp - msg.logtrace.last.timestamp
+    assert_equal(r, msg.delay)
+  end
+
 end

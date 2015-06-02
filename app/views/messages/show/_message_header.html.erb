@@ -1,0 +1,20 @@
+<div class="col-md-7">
+  <table class="table table-message-header">
+    <tr>
+      <td class="header-field">De</td>
+      <td class="header-value"><%= @message.from %></td>
+    </tr>
+    <tr>
+      <td class="header-field">Para</td>
+      <td class="header-value"><%= display_message_to @message %></td>
+    </tr>
+    <tr>
+      <td class="header-field">Fecha</td>
+      <td class="header-value"><%= I18n.l @message.timestamp, format: :log %></td>
+    </tr>
+    <tr>
+      <td class="header-field">MessageID</td>
+      <td class="header-value"><%= truncate(@message.messageid, length: 200) %></td>
+    </tr>
+  </table>
+</div>

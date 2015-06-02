@@ -9,10 +9,6 @@ class Account < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :zendesk_id
 
-  def admin?
-    users.where(role: 'admin').any?
-  end
-
   def jail
     return false if admin?
     return zbox_jail if zbox_mail?
