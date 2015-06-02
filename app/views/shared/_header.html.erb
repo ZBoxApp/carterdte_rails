@@ -2,7 +2,7 @@
     <div class="color-line">
     </div>
     <div id="logo" class="light-version">
-        <% if current_account.itlinux? %>
+        <% if current_account.itlinux? && !current_account.admin? %>
           <%= image_tag "logo-itlinux.png", :title => "CarterApp", :class => "logo" %>
         <% else %>
         <%= image_tag "logo-zbox.png", :title => "CarterApp", :class => "logo" %>
