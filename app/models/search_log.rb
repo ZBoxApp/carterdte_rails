@@ -118,7 +118,7 @@ class SearchLog
   end
 
   def set_index_name
-    date = dated_index(s_date, e_date)
+    #date = dated_index(s_date, e_date)
     #"logstash-#{date}"
     'logstash-201*'
   end
