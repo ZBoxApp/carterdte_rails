@@ -2,6 +2,7 @@
 
 entel:
   name: Entel
+  zendesk_id: 12346
 
 itlinux:
   name: ITLinux

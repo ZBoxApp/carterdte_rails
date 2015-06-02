@@ -29,7 +29,7 @@ class DteMessagesController < ApplicationController
     # We only allow from system type useres
     return head :forbidden unless current_user.system?
     @message = current_account.dte_messages.new(message_params)
-
+    @message.sent_date = Time.zone.parse(message_params[:sent_date]) unless message_params[:sent_date].nil?
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: 'Message was successfully created.' }

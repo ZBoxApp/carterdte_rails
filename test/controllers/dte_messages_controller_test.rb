@@ -12,7 +12,6 @@ class DteMessagesControllerTest < ActionController::TestCase
   def teardown
     @msg_sent = nil
     @msg_resp = nil
-    DteMessage.all.each {|m| m.destroy }
   end
 
   def hash_msg(msg)
@@ -69,6 +68,16 @@ class DteMessagesControllerTest < ActionController::TestCase
     message = assigns(:message)
     assert_equal(@system.account_id, message.account_id)
     #assert_equal(@system.account_id, message.dte.account_id)
+  end
+  
+  test 'it should the correct values for the fields' do
+    hash = {"to"=>"gascoglp@facturanet.cl","from"=>"dte_vsp@xs6dte.cl","qid"=>"8C462753E09","message_id"=>"10282147.1433272626715.JavaMail.tomcat@xs4ccu00204.xs4dte.cl","cc"=>nil,"sent_date"=>"2015-06-02T16:17:06-03:00","return_qid"=>"E41A22EC0F0","dte_attributes"=>{"folio"=>"7683446","rut_receptor"=>"91041000-8","rut_emisor"=>"96568740-8","msg_type"=>"respuesta","setdte_id"=>"SETDTE96568740X33X7683446X95591927","dte_type"=>"33","fecha_emision"=>"2015-05-29","fecha_recepcion"=>"2015-06-02"}}
+    sign_in @system
+    post :create, message: hash, format: :json
+    message = assigns(:message)
+    assert_equal(Time.zone.parse(hash['sent_date']), message.sent_date)
+    assert_equal(Date.parse(hash['dte_attributes']['fecha_emision']), message.dte.fecha_emision)
+    assert_equal(Date.parse(hash['dte_attributes']['fecha_recepcion']), message.dte.fecha_recepcion)
   end
 
 
