@@ -1,8 +1,13 @@
 class MessagesController < ApplicationController
 
   def index
-    @messages_search = search(params)
-    @messages = @messages_search.results
+    begin
+      @messages_search = search(params)
+      @messages = @messages_search.results
+    rescue ActiveRecord::RecordNotFound => e
+      @messages_search = false
+      @messages = []
+    end
   end
 
   def show

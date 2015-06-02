@@ -1,63 +1,71 @@
 <%= render partial: "messages/index/search" %>
 
-<div class="hpanel">
-  <div class="panel-heading hbuilt">
-    <div class="pull-right" style="padding-right: 10px;">
-      <h4>
-        <%= number_to_human @messages_search.total_hits %> mensajes
-      </h4>
+<% if @messages.empty? %>
+  <div class="hpanel">
+    <div class="panel-body text-center">
+      <h2>Ningún resultado para tu búsqueda</h2>
     </div>
-    <ul class="list-inline delivery-status-explain">
-      <li><span class="label delivery-sent">enviado</span></li>
-      <li><span class="label delivery-enqueued">procesando</span></li>
-      <li><span class="label delivery-partial">envio parcial</span></li>
-      <li><span class="label delivery-failed">con falla</span></li>
-    </ul>
   </div>
-  <div class="panel-body">
-    <div class="table-responsive">
-      <table cellpadding="1" cellspacing="1" class="table">
-          <thead>
-          <tr>
-              <th></th>
-              <th>De</th>
-              <th>Para</th>
-              <th></th>
-          </tr>
-          </thead>
-          <tbody>
-            <%= render partial: "messages/index/message", collection: @messages %>
-          </tbody>
-      </table>
-    </div>
-    <nav class="text-center">
-      <ul class="pagination">
-        <li>
-          <%= link_to messages_path(params.merge(page: @messages_search.previous_page)) do %>
-            <span aria-hidden="true">&laquo;</span></a>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to messages_path(params.merge(page: 1)) do %>
-            Primera <span class="sr-only">Primera</span>
-          <% end %>
-        </li>
-        <li class="active">
-          <a href="#"><%= @messages_search.current_page %> 
-            <span class="sr-only"><%= @messages_search.current_page %></span>
-          </a>
-        </li>
-        <li>
-          <%= link_to messages_path(params.merge(page: @messages_search.pages)) do %>
-            Última <span class="sr-only">Última</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to messages_path(params.merge(page: @messages_search.next_page)) do %>
-            <span aria-hidden="true">&raquo;</span>
-          <% end %>
-        </li>
+<% else %>
+  <div class="hpanel">
+    <div class="panel-heading hbuilt">
+      <div class="pull-right" style="padding-right: 10px;">
+        <h4>
+          <%= number_to_human @messages_search.total_hits %> mensajes
+        </h4>
+      </div>
+      <ul class="list-inline delivery-status-explain">
+        <li><span class="label delivery-sent">enviado</span></li>
+        <li><span class="label delivery-enqueued">procesando</span></li>
+        <li><span class="label delivery-partial">envio parcial</span></li>
+        <li><span class="label delivery-failed">con falla</span></li>
       </ul>
-    </nav>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table cellpadding="1" cellspacing="1" class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>De</th>
+                <th>Para</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "messages/index/message", collection: @messages %>
+            </tbody>
+        </table>
+      </div>
+      <nav class="text-center">
+        <ul class="pagination">
+          <li>
+            <%= link_to messages_path(params.merge(page: @messages_search.previous_page)) do %>
+              <span aria-hidden="true">&laquo;</span></a>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to messages_path(params.merge(page: 1)) do %>
+              Primera <span class="sr-only">Primera</span>
+            <% end %>
+          </li>
+          <li class="active">
+            <a href="#"><%= @messages_search.current_page %>
+              <span class="sr-only"><%= @messages_search.current_page %></span>
+            </a>
+          </li>
+          <li>
+            <%= link_to messages_path(params.merge(page: @messages_search.pages)) do %>
+              Última <span class="sr-only">Última</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to messages_path(params.merge(page: @messages_search.next_page)) do %>
+              <span aria-hidden="true">&raquo;</span>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
-</div>
+<% end %>
