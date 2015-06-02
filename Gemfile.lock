@@ -155,6 +155,7 @@ GEM
       ruby-progressbar
     multi_json (1.11.0)
     multipart-post (2.0.0)
+    mysql2 (0.3.17)
     nenv (0.2.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -283,6 +284,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   minitest-reporters
+  mysql2
   omniauth
   omniauth-zendesk
   rails (= 4.2.1)
