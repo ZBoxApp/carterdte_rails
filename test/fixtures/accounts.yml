@@ -6,6 +6,7 @@ entel:
 itlinux:
   name: ITLinux
   zendesk_id: 123
+  admin: true
 
 zbox_client:
   name: zbox_client

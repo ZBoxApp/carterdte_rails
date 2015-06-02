@@ -38,7 +38,7 @@ es-CL:
     premium: "Premium"
     reseller: "Reseller"
     save_error: "No se pudo guardar. Por favor corrija los errores"
-    save_success: "Datos guardados correctamente"
+    save_success: "Operación realizada correctamente"
     search_account_placeholder: "Buscar cuenta por nombre o rut"
     total: "Total"
     type: "Tipo"
