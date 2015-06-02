@@ -10,14 +10,14 @@
           <div class="col-md-6">
             <div class="input-group m-b">
               <span class="input-group-addon">De</span>
-              <%= text_field_tag(
+              <%= email_field_tag(
                   :from,
                   params[:from],
                   placeholder: "remitente@domain.com",
                   class: "form-control"
               ) %>
               <span class="input-group-addon">Para</span>
-              <%= text_field_tag(
+              <%= email_field_tag(
                   :to,
                   params[:to],
                   placeholder: "para@domain.com",
