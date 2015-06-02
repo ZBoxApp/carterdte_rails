@@ -31,6 +31,7 @@ RUN rake assets:precompile
 # RUN rake assets:sync
 RUN rake tmp:create
 RUN rake tmp:clear
+RUN cp -a /home/app/carterapp/vendor/assets/stylesheets/homer /home/app/carterapp/public/assets/
 RUN chown 9999:9999 -R /home/app/carterapp
 
 CMD ["/sbin/my_init"]
