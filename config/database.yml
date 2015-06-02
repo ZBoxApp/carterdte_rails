@@ -23,8 +23,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  username: ENV['db_username']
+  username: <%= ENV['db_username'] %>
   pool: 5
-  password: ENV['db_password']
-  host: ENV['db_host']
-  database: ENV['db_name']
+  password: <%= ENV['db_password'] %>
+  host: <%= ENV['db_host'] %>
+  database: <%= ENV['db_name'] %>
