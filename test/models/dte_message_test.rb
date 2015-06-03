@@ -11,5 +11,7 @@ class DteMessageTest < ActiveSupport::TestCase
     assert_equal(@envio.to.downcase, @envio.to)
     assert_equal(@envio.from.downcase, @envio.from)
   end
+  
+    
 
 end

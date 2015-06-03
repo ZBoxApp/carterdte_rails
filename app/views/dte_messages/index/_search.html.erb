@@ -1,0 +1,32 @@
+<div class="hpanel col-md-3">
+    <div class="panel-body">
+      <%= search_form_for @message_search do |f| %>
+            <%= f.label "De" %>
+            <%= f.search_field(
+                :from_eq,
+                placeholder: "RUT o Email",
+                class: "form-control"
+            ) %>
+            <%= f.label "Para" %>
+            <%= f.search_field(
+                :to_eq,
+                placeholder: "RUT o Email",
+                class: "form-control"
+            ) %>
+            <%= f.label "Desde" %>
+            <%= f.search_field(
+                :sent_date_gteq,
+                placeholder: I18n.l(Date.today),
+                class: "form-control datepicker"
+            ) %>
+            <%= f.label "Hasta" %>
+            <%= f.search_field(
+                :sent_date_lteq,
+                placeholder: I18n.l(Date.today),
+                class: "form-control datepicker"
+            ) %>
+            <br/>
+        <%= f.submit "Buscar!", class: "btn btn-primary", style: "padding-left: 20px; padding-right: 20px; " %>
+      <% end %>
+    </div>
+</div>

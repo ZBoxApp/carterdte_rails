@@ -2,6 +2,7 @@ class DteMessage < ActiveRecord::Base
 
   belongs_to :account
   has_one :dte, dependent: :destroy
+  delegate :rut_receptor, to: :dte
 
   accepts_nested_attributes_for :dte, :allow_destroy => true
 

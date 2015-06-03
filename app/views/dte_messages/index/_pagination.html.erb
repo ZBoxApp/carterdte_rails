@@ -1,0 +1,29 @@
+<nav class="text-center">
+  <ul class="pagination">
+    <li>
+      <%= link_to messages_path(params.merge(page: @messages_search.previous_page)) do %>
+        <span aria-hidden="true">&laquo;</span></a>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to messages_path(params.merge(page: 1)) do %>
+        Primera <span class="sr-only">Primera</span>
+      <% end %>
+    </li>
+    <li class="active">
+      <a href="#"><%= @messages_search.current_page %>
+        <span class="sr-only"><%= @messages_search.current_page %></span>
+      </a>
+    </li>
+    <li>
+      <%= link_to messages_path(params.merge(page: @messages_search.pages)) do %>
+        Última <span class="sr-only">Última</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to messages_path(params.merge(page: @messages_search.next_page)) do %>
+        <span aria-hidden="true">&raquo;</span>
+      <% end %>
+    </li>
+  </ul>
+</nav>

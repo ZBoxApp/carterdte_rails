@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602093636) do
+ActiveRecord::Schema.define(version: 20150603095215) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -42,13 +42,17 @@ ActiveRecord::Schema.define(version: 20150602093636) do
     t.time     "sent_date"
     t.string   "return_qid"
     t.integer  "account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "qid"
+    t.string   "rut_emisor"
+    t.string   "rut_receptor"
   end
 
   add_index "dte_messages", ["account_id"], name: "index_dte_messages_on_account_id"
   add_index "dte_messages", ["from"], name: "index_dte_messages_on_from"
+  add_index "dte_messages", ["rut_emisor"], name: "index_dte_messages_on_rut_emisor"
+  add_index "dte_messages", ["rut_receptor"], name: "index_dte_messages_on_rut_receptor"
   add_index "dte_messages", ["to"], name: "index_dte_messages_on_to"
 
   create_table "dtes", force: :cascade do |t|

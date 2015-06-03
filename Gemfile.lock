@@ -172,6 +172,8 @@ GEM
       omniauth (> 1.0)
       zendesk_api (> 0.2.2)
     orm_adapter (0.5.0)
+    polyamorous (1.2.0)
+      activerecord (>= 3.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -204,6 +206,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    ransack (1.6.6)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -292,6 +300,7 @@ DEPENDENCIES
   omniauth
   omniauth-zendesk
   rails (= 4.2.1)
+  ransack
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form

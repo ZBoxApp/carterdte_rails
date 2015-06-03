@@ -1,39 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
 
-<h1>Listing Messages</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>To</th>
-      <th>From</th>
-      <th>Message</th>
-      <th>Cc</th>
-      <th>Sent date</th>
-      <th>Qid</th>
-      <th>Dte</th>
-      <th>Account</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.to %></td>
-        <td><%= message.from %></td>
-        <td><%= message.message_id %></td>
-        <td><%= message.cc %></td>
-        <td><%= message.sent_date %></td>
-        <td><%= message.qid %></td>
-        <td><%= message.account_id %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_dte_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<% if @messages.empty? %>
+  <div class="hpanel col-md-9">
+    <div class="panel-body text-center">
+      <h2>Ningún resultado para tu búsqueda</h2>
+    </div>
+  </div>
+<% else %>
+  <div class="hpanel col-md-9">
+    <div class="panel-heading hbuilt">
+      <div class="pull-right" style="padding-right: 10px;">
+        <h4>
+          <%= number_to_human @message_search.result.size %> mensajes
+        </h4>
+      </div>
+      <ul class="list-inline delivery-status-explain">
+        <li><span class="label delivery-sent">enviado</span></li>
+        <li><span class="label delivery-enqueued">procesando</span></li>
+        <li><span class="label delivery-partial">envio parcial</span></li>
+        <li><span class="label delivery-failed">con falla</span></li>
+      </ul>
+    </div>
+    <div class="panel-body">
+      <div class="table">
+        <table class="table">
+            <thead>
+              <tr>
+                  <th></th>
+                  <th>Información</th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "dte_messages/index/message", collection: @messages %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <%= render partial: "dte_messages/index/search" %>
+<% end %>
+</div>

@@ -5,7 +5,9 @@ class DteMessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = DteMessage.all
+    params[:q][:account_id_eq] = current_account.id unless current_account.admin?
+    @message_search  = DteMessage.ransack(params[:q])
+    @messages = @message_search.result(distinct: true)
   end
 
 

@@ -1,0 +1,15 @@
+<tr>
+    <td class="delivery-status delivery-sent">
+    </td>
+    <td class="delivery-info">
+      <span class="message-from">
+        De: <%= truncate(message.from, length: 40) %>
+      </span><br/>
+        Para: <span class="message-to"><%= message.to %></span>
+      <p style="margin-top: 5px;">
+        <%= I18n.l message.sent_date, format: :short_seconds %>
+      </p>
+      <span class="label label-default"> <%= "DTE #{message.dte.msg_type.upcase}" %> </span>
+    </td>
+    <td> <%= link_to "Ver traza", dte_message_path(message), class: 'btn btn-default' %> </td>
+</tr>

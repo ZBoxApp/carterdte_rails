@@ -6,6 +6,8 @@ envio:
   message_id: 55507b344b5eb_1266d3fef0602dbec98833@iMac-de-los-BruGa-3.local.mail
   sent_date: 2015-05-12
   qid: C4C8A3505A5
+  rut_receptor: 76530890-9
+  rut_emisor: 13834853-9
   account: entel
 
 respuesta:
@@ -15,3 +17,6 @@ respuesta:
   sent_date: 2015-05-12
   qid: 8BD31350611
   account: entel
+  rut_receptor: 76530890-9
+  rut_emisor: 13834853-9
+
