@@ -16,6 +16,11 @@ class DteMessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    if current_account.admin?
+      @message = DteMessage.find(params[:id])
+    else
+      @message = DteMessage.by_account(current_account)
+    end
   end
 
   # GET /messages/new

@@ -1,40 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>To:</strong>
-  <%= @message.to %>
-</p>
+  <div class="col-md-12 animated-panel ZoomIn">
+    <div class="hpanel">
+      <div class="panel-heading">
+        <i class="pe-7s-back" style="font-size: 14px"></i>
+        <%= link_to "Volver", :back %>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <%= render partial: 'dte_messages/show/message_header' %>
+          <%= render partial: 'dte_messages/show/message_stats' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>From:</strong>
-  <%= @message.from %>
-</p>
+</div>
 
-<p>
-  <strong>Message:</strong>
-  <%= @message.message_id %>
-</p>
-
-<p>
-  <strong>Cc:</strong>
-  <%= @message.cc %>
-</p>
-
-<p>
-  <strong>Sent date:</strong>
-  <%= @message.sent_date %>
-</p>
-
-<p>
-  <strong>Qid:</strong>
-  <%= @message.qid %>
-</p>
-
-
-<p>
-  <strong>Account:</strong>
-  <%= @message.account_id %>
-</p>
-
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<div class="hpanel">
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table cellpadding="1" cellspacing="1" class="table table-striped mtalog">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Host</th>
+            <th>Log</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "dte_messages/show/mtalog", collection: @message.logtrace %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
