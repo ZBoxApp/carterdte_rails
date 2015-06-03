@@ -9,7 +9,7 @@
       <p style="margin-top: 5px;">
         <%= I18n.l message.sent_date, format: :short_seconds %>
       </p>
-      <span class="label label-default"> <%= "DTE #{message.dte.msg_type.upcase}" %> </span>
+      <span class="label label-default"> <%= display_msg_type message %> </span>
     </td>
     <td> <%= link_to "Ver traza", dte_message_path(message), class: 'btn btn-default' %> </td>
 </tr>
