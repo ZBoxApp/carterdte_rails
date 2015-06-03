@@ -18,6 +18,7 @@ class DteMessage < ActiveRecord::Base
     source.messageid = message_id
     source.from = from
     source.to = to
+    source.timestamp = sent_date
     @mta_message ||= Message.new(account_id: account.id, source: source)
     @mta_message
   end
