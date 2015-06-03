@@ -24,7 +24,6 @@ class DteMessage < ActiveRecord::Base
   end
   
   def logtrace
-    return [] if @mta_message.nil?
     @mta_message.logtrace
   end
   
