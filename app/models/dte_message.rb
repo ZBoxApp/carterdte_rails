@@ -24,7 +24,7 @@ class DteMessage < ActiveRecord::Base
   end
   
   def logtrace
-    @mta_message.logtrace
+    mta_message.logtrace
   end
   
   private
