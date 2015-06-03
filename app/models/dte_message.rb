@@ -15,7 +15,7 @@ class DteMessage < ActiveRecord::Base
   
   def mta_message
     source = OpenStruct.new
-    source.messageid = messageid_id
+    source.messageid = message_id
     source.from = from
     source.to = to
     @mta_message ||= Message.new(account_id: account.id, source: source)
