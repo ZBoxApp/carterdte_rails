@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 
   def index
+    redirect_to dte_messages_path if current_account.dte_default?
     begin
       @messages_search = search(params)
       @messages = @messages_search.results
