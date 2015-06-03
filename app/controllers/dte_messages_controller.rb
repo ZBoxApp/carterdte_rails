@@ -34,6 +34,7 @@ class DteMessagesController < ApplicationController
     return head :forbidden unless current_user.system?
     @message = current_account.dte_messages.new(message_params)
     @message.sent_date = Time.parse(message_params[:sent_date]).to_s(:db) unless message_params[:sent_date].nil?
+    Rails.logger.debug "AQUI---- #{@message.sent_date}"
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
