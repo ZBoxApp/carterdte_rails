@@ -14,7 +14,9 @@ class DteMessage < ActiveRecord::Base
   scope :by_account, ->(account) { where(account_id: account.id)}
   
   def mta_message
-    @mta_message ||= Message.find(account, message_id)
+    @mta_message ||= Message.new(account_id: account.id)
+    @mta_message.messageid = message_id
+    @mta_message
   end
   
   def logtrace

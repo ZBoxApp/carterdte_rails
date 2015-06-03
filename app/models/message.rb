@@ -1,7 +1,8 @@
 class Message
 
-  attr_reader :id, :messageid, :from, :to, :from_domain, :to_domain, :result
+  attr_reader :id, :from, :to, :from_domain, :to_domain, :result
   attr_reader :status, :size, :account_id, :timestamp, :logtrace, :account
+  attr_accessor :messageid
 
   def initialize(id: nil, source: nil, account_id: nil)
     @id = id
