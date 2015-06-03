@@ -103,8 +103,8 @@ class Message
     @to_domain = source.to_domain.is_a?(Array) ? source.to_domain.uniq : [source.to_domain]
     @result = source.result
     @status = source.status
-    @size = source['size'].to_i
-    @timestamp = Time.parse source['@timestamp']
+    @size = source['size'].to_i unless source['size'].nil?
+    @timestamp = Time.parse source['@timestamp'] unless source['@timestamp'].nil?
   end
 
 end

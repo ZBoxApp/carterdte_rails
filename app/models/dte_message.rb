@@ -14,8 +14,11 @@ class DteMessage < ActiveRecord::Base
   scope :by_account, ->(account) { where(account_id: account.id)}
   
   def mta_message
-    @mta_message ||= Message.new(account_id: account.id)
-    @mta_message.messageid = message_id
+    source = OpenStruct.new
+    source.messageid = messageid_id
+    source.from = from
+    source.to = to
+    @mta_message ||= Message.new(account_id: account.id, source: source)
     @mta_message
   end
   
