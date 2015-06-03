@@ -7,8 +7,9 @@ class DteMessagesController < ApplicationController
   def index
     params[:q] ||= {}
     params[:q][:account_id_eq] = current_account.id unless current_account.admin?
-    @message_search  = DteMessage.ransack(params[:q])
-    @messages = @message_search.result(distinct: true)
+    @message_search = DteMessage.ransack(params[:q])
+    @message_search.sorts = 'sent_date desc'
+    @messages = @message_search.result.includes(:dte).page(params[:page])
   end
 
 

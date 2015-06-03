@@ -3,13 +3,13 @@
       <%= search_form_for @message_search do |f| %>
             <%= f.label "De" %>
             <%= f.search_field(
-                :from_eq,
+                :from_or_rut_emisor_cont,
                 placeholder: "RUT o Email",
                 class: "form-control"
             ) %>
             <%= f.label "Para" %>
             <%= f.search_field(
-                :to_eq,
+                :to_or_rut_receptor_cont,
                 placeholder: "RUT o Email",
                 class: "form-control"
             ) %>
