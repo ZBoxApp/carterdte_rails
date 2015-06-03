@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603095215) do
+ActiveRecord::Schema.define(version: 20150603110612) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150603095215) do
     t.string   "from"
     t.text     "message_id"
     t.string   "cc"
-    t.time     "sent_date"
+    t.datetime "sent_date"
     t.string   "return_qid"
     t.integer  "account_id"
     t.datetime "created_at",   null: false
