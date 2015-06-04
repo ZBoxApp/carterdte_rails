@@ -13,9 +13,16 @@ class DteMessage < ActiveRecord::Base
   
   scope :by_account, ->(account) { where(account_id: account.id)}
   
+  # Este metodo es para facilitar el
+  # desarrollo
+  def get_message_id
+    return message_id if Rails.env.production?
+    '86dc6d16f17388d70e8951f61877576e@www.rkfoutdoor.com'
+  end
+  
   def mta_message
     source = OpenStruct.new
-    source.messageid = message_id
+    source.messageid = get_message_id
     source.from = from
     source.to = to
     source['@timestamp'] = sent_date.to_s(:db)

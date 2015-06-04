@@ -19,7 +19,7 @@ class DteMessagesController < ApplicationController
     if current_account.admin?
       @message = DteMessage.find(params[:id])
     else
-      @message = DteMessage.by_account(current_account)
+      @message = DteMessage.by_account(current_account).find(params[:id])
     end
   end
 
