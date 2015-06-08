@@ -4,7 +4,7 @@
     <td class="delivery-info">
       <span class="message-from"><%= truncate(message.from, length: 40) %></span>
       <p style="margin-top: 5px;">
-        <%= I18n.l message.timestamp.in_time_zone, format: :short_seconds %>
+        <%= I18n.l message.timestamp.in_time_zone(-3), format: :short_seconds %>
       </p>
     </td>
     <td>
