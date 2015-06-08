@@ -11,7 +11,7 @@ class SearchLog
   attr_accessor :index, :from, :to, :jail, :query, :raw_query
   attr_reader :s_date, :e_date
 
-  CONNECTION = ::Faraday::Connection.new url: "http://#{Figaro.env.elasticsearch_host}:9200"
+  CONNECTION = ::Faraday::Connection.new url: "http://#{ENV['elasticsearch_host']}:9200"
   SEARCH_SIZE = 25
 
   def initialize(jail: nil, query: nil, s_date: nil, e_date: nil)
