@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
     begin
       @messages_search = search(params)
       @messages = @messages_search.results
-    rescue ActiveRecord::RecordNotFound => e
+    rescue Errors::NoElasticSearchResults => e
       @messages_search = false
       @messages = []
     end

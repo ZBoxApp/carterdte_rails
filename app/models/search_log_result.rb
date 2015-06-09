@@ -6,7 +6,7 @@ class SearchLogResult
   def initialize(response, from, size, search)
     hashify(response)
     fail '<SearchLog::Error> Error en Search' if @raw_hits.nil?
-    fail ActiveRecord::RecordNotFound if @raw_hits.total == 0
+    fail Errors::NoElasticSearchResults if @raw_hits.total == 0
     @hits = @raw_hits.hits
     @total_hits = @raw_hits.total
     @search_size = size

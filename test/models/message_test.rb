@@ -49,8 +49,8 @@ class MessageTest < ActiveSupport::TestCase
     first = result.hits.first._source
   end
 
-  test 'find should rails ActiveRecord::RecordNotFound for invalid ids' do
-    assert_raise(ActiveRecord::RecordNotFound) { Message.find(@itlinux_account, 9383) }
+  test 'find should rails Errors::NoElasticSearchResults for invalid ids' do
+    assert_raise(Errors::NoElasticSearchResults) { Message.find(@itlinux_account, 9383) }
   end
 
   test 'find should return the given message' do
