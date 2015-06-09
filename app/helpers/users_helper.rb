@@ -1,8 +1,9 @@
 module UsersHelper
   
   def display_user_image(user)
-    return image_tag(user.image) if user.image
     return image_tag('system_user.png') if user.system?
+    return image_tag('empty_user.png') if user.image.nil?
+    image_tag(user.image)
   end
   
   def display_user_name(user)
