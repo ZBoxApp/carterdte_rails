@@ -9,8 +9,12 @@ system:
   account: entel
   role: system
 
-# column: value
-#
+nojail_user:
+  email: nojail@example.com
+  account: nojail_account
+  role: end-user
+  name: Patricio Bruna
+
 admin:
   email: pbruna@itlinux.cl
   account: itlinux

@@ -1,66 +1,58 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
 
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    <!-- Page title -->
+    <title>ZBoxApp | Carter</title>
 
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="/styles/vendor/fontawesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/styles/vendor/bootstrap/dist/css/bootstrap.css">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="/styles/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/styles/fonts/pe-icon-7-stroke/css/helper.css">
+    <link rel="stylesheet" href="/styles/styles/style.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+<body class="blank">
+
+
+<div class="color-line"></div>
+<div class="pull-left m">
+    <a href="/messages/" class="back btn btn-primary">Volver al Dashboard</a>
+</div>
+<div class="error-container">
+    <i class="pe-7s-way text-success big-icon"></i>
+    <h1>500</h1>
+    <strong>Error en la aplicación</strong>
+    <p>
+      Lo sentimos, ha ocurrido un error en la aplicación y nuestro equipo ya recibió la alarma correspondiente. Si gustas puedes generar un <a href="http://soporte.itlinux.cl/">Ticket</a> para hacerle seguimiento, pero no es necesario.
+    </p>
+    <p>
+      Esto es completamente culpa nuestra y te aseguramos que correrá sangre.
+    </p>
+    <a href="/messages/" class="back btn btn-xs btn-success">Volver al dashboard</a>
+</div>
+
+<script>
+jQuery(document).ready(function(){
+    $('a.back').click(function(){
+        parent.history.back();
+        return false;
+    });
+});
+
+</script>
+
 </body>
+
+
 </html>

@@ -11,10 +11,21 @@ class Account < ActiveRecord::Base
 
   def jail
     return false if admin?
-    return zbox_jail if zbox_mail?
-    itlinux_jail
+    jail_arr = zbox_mail? ? zbox_jail : itlinux_jail
+    raise Errors::MissingAccountJail if jail_arr.empty?
+    jail_arr
   end
-
+  
+  
+  # Este metodo se usa para hacer un Raise
+  # Errors::MissingAccountJail
+  def find_account(account_id)
+    account = Account.find account_id
+    
+    account
+  end
+  
+  
   def itlinux?
     !zbox_mail?
   end

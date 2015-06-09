@@ -6,6 +6,7 @@ class MessageTest < ActiveSupport::TestCase
     @admin_account = accounts(:itlinux)
     @zbox_account = accounts(:zbox_client)
     @itlinux_account = accounts(:itlinux_client)
+    @nojail_account = accounts(:nojail_account)
     date = Date.parse('2015-05-16')
     @base_query = { s_date: date, e_date: date }
   end
@@ -101,6 +102,10 @@ class MessageTest < ActiveSupport::TestCase
     msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
     r = msg.logtrace.first.timestamp - msg.logtrace.last.timestamp
     assert_equal(r, msg.delay)
+  end
+  
+  test 'should raise if account has not jail' do
+    assert_raise(Errors::MissingAccountJail) { Message.find(@nojail_account, 'AU1fK5QmnuGUxTCvj0lc') }
   end
 
 end

@@ -18,3 +18,7 @@ itlinux_client:
   name: itlinux_client
   zendesk_id: 12345
   
+nojail_account:
+  name: No Jail
+  zbox_mail: true
+  zendesk_id: 64737

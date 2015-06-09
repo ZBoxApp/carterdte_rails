@@ -36,7 +36,8 @@ class Message
     deliver_trace = logtrace.select { |l| l.qid == qids.first }
     deliver_trace.select { |l| l.tags.include?('relay') }
   end
-
+  
+  
   # Devuelve un arreglo con la traza de logs
   # Ordenado del mas nuevo al mas viejo
   def logtrace
@@ -87,7 +88,6 @@ class Message
   def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil, page: 1)
     fail '<Message#search> Account nil' unless account.is_a? Account
     query = SearchLogQuery.amavisd_by_emails(from: from, to: to)
-    Rails.logger.debug "---- AQUI #{s_date} y #{e_date}"
     search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
     result = search_log.execute(from_by_page(page))
     result.results = result.hits.map { |r| Message.new(id: r._id, source: r._source, account_id: account.id) }
