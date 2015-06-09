@@ -1,0 +1,21 @@
+<div class="modal fade" id="new_restriction" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header text-center">
+                <h4 class="modal-title">Agregar dominio</h4>
+                <small class="font-bold">Es un dominio creado en ZBox Mail</small>
+            </div>
+            <%= form_for @restriction do |f| -%>
+              <div class="modal-body">
+                  <%= f.text_field :name, class: "form-control input-lg m-b", placeholder: "Nombre del dominio" %>
+                  <%= f.hidden_field :account_id, value: @restriction.account_id %>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <%= f.submit "Guardar", class: "btn btn-primary"%>
+              </div>
+            <% end -%>
+        </div>
+    </div>
+</div>

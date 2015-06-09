@@ -1,12 +1,14 @@
 <% if flash[:error] %>
-   <div class="alert flash-error">
+   <div class="alert flash-error" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      <i class="fa fa-exclamation-circle"></i>
      <%= I18n.t("messages.save_error") %>
    </div>
 <% end %>
 
 <% if flash[:notice] %>
-   <div class="alert flash-success">
+   <div class="alert flash-success" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
      <i class="fa fa-check-circle-o"></i>
      <%= I18n.t("messages.save_success") %>
    </div>

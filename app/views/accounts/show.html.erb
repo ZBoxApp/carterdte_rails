@@ -1,9 +1,65 @@
-<p id="notice"><%= notice %></p>
+<div class="hpanel">
+    <div class="panel-body">
+        <a class="small-header-action" href="">
+            <div class="clip-header">
+                <i class="fa fa-arrow-up"></i>
+            </div>
+        </a>
+        <h2 class="font-light m-b-xs" style="margin-top:0px">
+            <%= @account.name %>
+        </h2>
+        <small>Usuarios y restricciones para la cuenta</small>
+    </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @account.name %>
-</p>
+<div class="row">
+  <% unless @account.admin? %>
+    <%= display_restriction_modal @account %>
+    <div class="hpanel col-md-6">
+      <div class="panel-heading hbuilt">
+        <div class="pull-right">
+          <button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#new_restriction">
+              Agregar restricción
+          </button>
+        </div>
+        Restricciones
+      </div>
+      <div class="panel-body">
+        <%= display_jails @account%>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="hpanel col-md-6">
+    <div class="panel-heading hbuilt">
+      <div class="panel-tools">
+          <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+      </div>
+      Usuarios
+    </div>
+    <div class="panel-body">
+      <% if @account.users.empty? %>
+        <div class="alert alert-info text-center">
+          Todavía no ingresa ningún usuario
+        </div>
+      <% else %>
+        <div class="table-responsive">
+          <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+              <thead>
+              <tr>
+                  <th></th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Última sesión</th>
+              </tr>
+              </thead>
+              <tbody>
+                <%= render :partial => "accounts/show/user",  collection: @account.users %>
+              </tbody>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>

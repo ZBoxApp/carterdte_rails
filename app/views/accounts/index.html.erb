@@ -1,27 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="hpanel">
+    <div class="panel-body">
+        <a class="small-header-action" href="">
+            <div class="clip-header">
+                <i class="fa fa-arrow-up"></i>
+            </div>
+        </a>
+        <h2 class="font-light m-b-xs" style="margin-top:0px">
+            Cuentas
+        </h2>
+        <small>Empresas y usuarios que pueden acceder a CarterApp</small>
+    </div>
+</div>
 
-<h1>Listing Accounts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
-      <tr>
-        <td><%= account.name %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Account', new_account_path %>
+<div class="hpanel">
+  <div class="panel-body">
+      <div class="table-responsive">
+      <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+          <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Usuarios</th>
+              <th>Cliente de</th>
+              <th>Restricción</th>
+              <th></th>
+          </tr>
+          </thead>
+          <tbody>
+            <%= render :partial => "accounts/index/account",  collection: @accounts %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

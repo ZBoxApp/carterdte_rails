@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ZboxManager</title>
+  <title>CarterApp::Beta</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
@@ -11,12 +11,7 @@
 	<%= render "shared/header"%>
 	<div id="wrapper">
 
-    <% if flash[:notice] %>
-       <div class="alert flash-success">
-         <i class="fa fa-check-circle-o"></i>
-         <%= I18n.t("messages.save_success") %>
-       </div>
-    <% end %>
+    <%= render :partial => "elements/flash" %>
     <div class="content animate-panel">
         <%= yield %>
     </div>

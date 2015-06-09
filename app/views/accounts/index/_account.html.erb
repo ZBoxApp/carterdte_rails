@@ -1,0 +1,7 @@
+<tr>
+  <td><%= account.name %></td>
+  <td><%= account.users.count %></td>
+  <td><%= customer_of(account)%></td>
+  <td><%= jail_by(account)%></td>
+  <td><%= link_to 'Editar cuenta', account_path(account), class: "btn btn-xs btn-default" %></td>
+</tr>

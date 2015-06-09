@@ -1,0 +1,10 @@
+<tr>
+  <%= render :partial => "accounts/show/edit_restriction", locals: {restriction: jail} %>
+  <td><%= jail.name %></td>
+  <td>
+    <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#edit_restriction-<%= jail.id %>">
+        Editar
+    </button>
+  </td>
+  <td><%= link_to 'Eliminar',  jail,  method: :delete, data: { confirm: 'Estas seguro?' }, class: 'btn btn-xs btn-danger' %></td>
+</tr>

@@ -55,7 +55,6 @@ body {
 
 .login-container {
   width: 600px;
-  margin-top: 7%;
 }
 
 .help-inline {
@@ -106,4 +105,16 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.navbar-nav {
+  .active {
+    background: #edf0f5;
+    
+    a:hover {
+      background: #edf0f5;
+    }
+    
+  }
 }

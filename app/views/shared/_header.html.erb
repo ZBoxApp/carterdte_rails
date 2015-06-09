@@ -1,5 +1,6 @@
 <div id="header">
     <div class="color-line">
+
     </div>
     <div id="logo" class="light-version">
         <% if current_account.itlinux? && !current_account.admin? %>
@@ -12,8 +13,18 @@
         <div class="small-logo">
             <span class="text-primary">CarterApp</span>
         </div>
+        <% if current_account.admin? %>
+          <div class="navbar-left">
+            <ul class="nav navbar-nav no-borders">
+                <li class="<%= active_menu?('messages') %>"><%= link_to "Mensajes", messages_path() %></li>
+                <li class="<%= active_menu?('dte_messages') %>"><%= link_to "DTEs", dte_messages_path() %></li>
+                <li class="<%= active_menu?('accounts') %>"><%= link_to "Administrar Cuentas", accounts_path() %></li>
+              </ul>
+          </div>
+        <% end %>
         <div class="navbar-right">
             <ul class="nav navbar-nav no-borders">
+                <li style='margin-right: 20px'></li>
                 <li class="dropdown" style='padding: 20px'>
                     Hola <%= current_user.name %>
                 </li>

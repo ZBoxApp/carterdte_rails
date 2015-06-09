@@ -16,22 +16,17 @@ class Account < ActiveRecord::Base
     jail_arr
   end
   
-  
-  # Este metodo se usa para hacer un Raise
-  # Errors::MissingAccountJail
-  def find_account(account_id)
-    account = Account.find account_id
-    
-    account
-  end
-  
-  
   def itlinux?
-    !zbox_mail?
+    !zbox_mail? && !admin?
   end
 
   def itlinux_jail
     servers.map { |s| { 'host' => s.name } }
+  end
+  
+  def jail_elements
+    return [] if admin?
+    zbox_mail? ? domains : servers
   end
 
   def zbox_jail

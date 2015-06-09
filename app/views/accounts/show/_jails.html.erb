@@ -1,0 +1,16 @@
+<div class="table-responsive">
+  <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+      <thead>
+      <tr>
+          <th>Nombre</th>
+          <th></th>
+          <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        <% jails.each do |jail| %>
+          <%= render partial: "accounts/show/jail", locals: {jail: jail} %>
+        <% end %>
+      </tbody>
+  </table>
+</div>
