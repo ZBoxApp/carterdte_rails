@@ -1,7 +1,7 @@
 class SearchLogResult
 
   attr_reader :current_page, :pages, :total_hits, :raw_hits, :hits, :search_size
-  attr_accessor :results
+  attr_accessor :results, :search
 
   def initialize(response, from, size, search)
     hashify(response)
