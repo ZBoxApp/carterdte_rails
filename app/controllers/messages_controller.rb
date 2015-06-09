@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
     redirect_to dte_messages_path if current_account.dte_default?
     begin
       @messages_search = search(params)
+      Rails.logger.debug "AQUI---- #{current_account}"
       Rails.logger.debug "ACA---- #{@messages_search.search}"
       @messages = @messages_search.results
     rescue Errors::NoElasticSearchResults => e
