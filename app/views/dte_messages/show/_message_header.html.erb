@@ -2,23 +2,23 @@
   <table class="table table-message-header">
     <tr>
       <td class="header-field">De</td>
-      <td class="header-value"><%= @message.from %></td>
+      <td class="header-value"><%= @dte_message.from %></td>
     </tr>
     <tr>
       <td class="header-field">Para</td>
-      <td class="header-value"><%= @message.to %></td>
+      <td class="header-value"><%= @dte_message.to %></td>
     </tr>
     <tr>
       <td class="header-field">Fecha</td>
-      <td class="header-value"><%= I18n.l @message.sent_date, format: :log %></td>
+      <td class="header-value"><%= I18n.l @message.timestamp, format: :log %></td>
     </tr>
     <tr>
       <td class="header-field">MessageID</td>
-      <td class="header-value"><%= truncate(@message.message_id, length: 200) %></td>
+      <td class="header-value"><%= truncate(@dte_message.message_id, length: 200) %></td>
     </tr>
     <tr>
       <td class="header-field">SetDTEId</td>
-      <td class="header-value"><%= @message.dte.setdte_id %></td>
+      <td class="header-value"><%= @dte_message.dte.setdte_id %></td>
     </tr>
   </table>
 </div>

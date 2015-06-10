@@ -17,10 +17,11 @@ class DteMessagesController < ApplicationController
   # GET /messages/1.json
   def show
     if current_account.admin?
-      @message = DteMessage.find(params[:id])
+      @dte_message = DteMessage.find(params[:id])
     else
-      @message = DteMessage.by_account(current_account).find(params[:id])
+      @dte_message = DteMessage.by_account(current_account).find(params[:id])
     end
+    @message = @dte_message.mta_message
   end
 
   # GET /messages/new
