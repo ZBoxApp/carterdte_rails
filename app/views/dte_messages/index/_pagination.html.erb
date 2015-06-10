@@ -1,12 +1,12 @@
 <nav class="text-center">
   <ul class="pagination">
     <li>
-      <%= link_to dte_messages_path(params.merge(page: @messages.prev_page)) do %>
+      <%= link_to dte_page_link(@messages.prev_page) do %>
         <span aria-hidden="true">&laquo;</span></a>
       <% end %>
     </li>
     <li>
-      <%= link_to dte_messages_path(params.merge(page: 1)) do %>
+      <%= link_to dte_page_link(1) do %>
         Primera <span class="sr-only">Primera</span>
       <% end %>
     </li>
@@ -16,12 +16,12 @@
       </a>
     </li>
     <li>
-      <%= link_to dte_messages_path(params.merge(page: @messages.total_pages)) do %>
+      <%= link_to dte_page_link(@messages.total_pages) do %>
         Última <span class="sr-only">Última</span>
       <% end %>
     </li>
     <li>
-      <%= link_to dte_messages_path(params.merge(page: @messages.next_page)) do %>
+      <%= link_to dte_page_link(@messages.next_page) do %>
         <span aria-hidden="true">&raquo;</span>
       <% end %>
     </li>
