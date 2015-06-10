@@ -9,10 +9,8 @@ module SearchLogQuery
     { '_id' => id }
   end
 
-  def self.by_messageid(id = nil)
-    [{ 'component' => 'cleanup' },
-     { 'messageid' => id }
-    ]
+  def self.by_messageid
+    { 'component' => 'cleanup' }
   end
 
   def self.by_qid(qid = nil)

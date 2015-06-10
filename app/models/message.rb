@@ -69,11 +69,17 @@ class Message
     # TODO: Sacar este bug en Julio
     bug_timestamp = Time.parse("2015-05-28 12:55:00 UTC")
     msgid = timestamp < bug_timestamp ? "#{messageid}>" : messageid
-    query = SearchLogQuery.by_messageid(msgid)
+    query = SearchLogQuery.by_messageid
     # Solo usamos Jail si es itlinux.cl, ya que es en base a host
     # no podemos usarla en base a dominios ya que devuelve nada
     jail = account.itlinux? ? account.jail : []
     search_log = SearchLog.new jail: jail, query: query, s_date: s_date, e_date: e_date
+    # Estamos teniendo problemas de parseo en el log
+    # asi que por ahora igual buscamos cuando es unkown
+    search_log.query[:body][:query][:filtered][:filter][:bool][:must_not] = {}
+    # Como tenemos problemas de parseo, tenemos que hacer una busqueda
+    # por match
+    search_log.query[:body][:query][:filtered][:query][:match][:message] = messageid
     result = search_log.execute
     @qids = result.hits.map { |r| r._source.qid }
   end
