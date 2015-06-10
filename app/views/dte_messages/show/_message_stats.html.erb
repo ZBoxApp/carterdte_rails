@@ -16,5 +16,13 @@
       <td class="header-field">Folio</td>
       <td class="header-value"><%= @dte_message.dte.folio %></td>
     </tr>
+    <tr>
+      <td class="header-field">Estado</td>
+      <td class="header-value">
+        <span class="label-delivery delivery-<%= @message.delivery_status %>">
+          <%= delivery_status_text @message %>
+        </span>
+      </td>
+    </tr>
   </table>
 </div>
