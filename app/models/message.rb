@@ -47,7 +47,10 @@ class Message
     trace = []
     qids.each do |qid|
       query = SearchLogQuery.by_qid(qid)
-      search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
+      # Solo usamos Jail si es itlinux.cl, ya que es en base a host
+      # no podemos usarla en base a dominios ya que devuelve nada
+      jail = account.itlinux? ? account.jail : []
+      search_log = SearchLog.new jail: jail, query: query, s_date: s_date, e_date: e_date
       result = search_log.execute
       trace << result.hits.map { |r| MtaLog.new(r._source) }
     end
