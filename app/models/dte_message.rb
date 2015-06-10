@@ -16,7 +16,7 @@ class DteMessage < ActiveRecord::Base
   # desarrollo
   def get_message_id
     return message_id if Rails.env.production?
-    '86dc6d16f17388d70e8951f61877576e@www.rkfoutdoor.com'
+    '2b4a4e966e0300b90a00c28b714f1c38@masamigos.cl'
   end
   
   def mta_message

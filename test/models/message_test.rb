@@ -81,6 +81,10 @@ class MessageTest < ActiveSupport::TestCase
   test 'delivery_status should return the status you know what' do
     msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
     assert_equal 'sent', msg.delivery_status
+    msg.qids_trace[msg.relay_qid][1].data['result'] = ['bounced', 'bounced']
+    assert_equal 'failed', msg.delivery_status
+    msg.relay_trace.delete_at(0)
+    assert_equal 'enqueued', msg.delivery_status
   end
 
   test 'delivery_status should work with multiples relays' do
@@ -107,5 +111,52 @@ class MessageTest < ActiveSupport::TestCase
   test 'should raise if account has not jail' do
     assert_raise(Errors::MissingAccountJail) { Message.find(@nojail_account, 'AU1fK5QmnuGUxTCvj0lc') }
   end
-
+  
+  test "qid_trace should return a logtrace for the qid" do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    assert_equal(msg.qids.sort, msg.qids_trace.keys.sort) 
+  end
+  
+  test 'relay_qid should return the qid of the relay log' do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    assert_equal(msg.qids_trace.keys.first, msg.relay_qid)
+  end
+  
+  test "processed? should return true if the message has a relay_qid with an qmgr log with result removed" do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    assert(msg.processed?, "Deberia responder true")
+    msg.relay_trace.delete_at(0)
+    assert(!msg.processed?, "Deberia responder falso")
+  end
+  
+  test "sent_trace should return an array of logs with relay tags and result sent" do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    exp = msg.sent_trace.first
+    assert_equal('sent', exp.result)
+    assert(exp.tags.include?('relay'), "No tiene el tag relay")
+  end
+  
+  test "bounce_trace should return an array of logs with relay tag and result bounced" do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    assert(msg.bounce_trace.empty?, "No deberia tener bounces.")
+    # Estamos cambiando el estado a manito de sent a bounced
+    msg.qids_trace[msg.relay_qid][1].data['result'] = ['bounced', 'bounced']
+    exp = msg.bounce_trace.first
+    assert(exp.result.include?('bounced'), "Deberia tener un bounced")
+    msg.qids_trace[msg.relay_qid][1].data['result'] = 'bounced'
+    exp = msg.bounce_trace.first
+    assert(exp.result.include?('bounced'), "Deberia tener un bounced")
+  end
+  
+  test 'deferred_trace should return an array of logs with relay tag and result deferred' do
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
+    assert(msg.deferred_trace.empty?, "No deberia tener deferred.")
+    # Estamos cambiando el estado a manito de sent a bounced
+    msg.qids_trace[msg.relay_qid][1].data['result'] = ['deferred', 'deferred']
+    exp = msg.deferred_trace.first
+    assert(exp.result.include?('deferred'), "Deberia tener un deferred")
+    msg.qids_trace[msg.relay_qid][1].data['result'] = 'deferred'
+    exp = msg.deferred_trace.first
+    assert(exp.result.include?('deferred'), "Deberia tener un deferred")
+  end
 end

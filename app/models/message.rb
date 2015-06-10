@@ -9,7 +9,24 @@ class Message
     @account_id = account_id
     @account = Account.find account_id
     @qids = nil
+    @qids_trace = {}
     get_message_data source
+  end
+  
+  # Devuelve un arreglo con los logs que
+  # corresponden a las entregas fallidas basado en
+  # el tag relay y result = bounced
+  def bounce_trace
+    result = relay_trace.select { |l| ( l.tags.include?('relay') && l.result.include?('bounced')) }
+    result.nil? ? [] : result
+  end
+  
+  # Devuelve un arreglo con los logs que
+  # corresponden a las entregas en cola basado en
+  # el tag relay y result = deferred
+  def deferred_trace
+    result = relay_trace.select { |l| ( l.tags.include?('relay') && l.result.include?('deferred')) }
+    result.nil? ? [] : result
   end
 
   def delay
@@ -25,11 +42,12 @@ class Message
   end
 
   def delivery_status
-    scores = delivery_scores
-    return 'sent' if scores['sent'] == to.size
-    return 'partial' if scores['sent'] > 0 && scores['sent'] < to.size
-    return 'enqueued' if scores['sent'] == 0 && scores['bounce'] == 0
-    'failed'
+    return 'enqueued' unless processed?
+    return 'sent' if sent_trace.size > 0 && bounce_trace.size == 0
+    return 'partial' if (bounce_trace.size > 0 && sent_trace.size > 0)
+    return 'failed' if (bounce_trace.size > 0 && sent_trace.size == 0)
+    #fail Errors::UnknownDeliveryStatus
+    'noidea'
   end
 
   def delivery_logs
@@ -42,24 +60,31 @@ class Message
   # Ordenado del mas nuevo al mas viejo
   def logtrace
     return @logtrace unless @logtrace.nil?
-    s_date = timestamp.to_date.yesterday
-    e_date = timestamp.to_date.tomorrow
-    trace = []
-    qids.each do |qid|
-      query = SearchLogQuery.by_qid(qid)
-      # Solo usamos Jail si es itlinux.cl, ya que es en base a host
-      # no podemos usarla en base a dominios ya que devuelve nada
-      jail = account.itlinux? ? account.jail : []
-      search_log = SearchLog.new jail: jail, query: query, s_date: s_date, e_date: e_date
-      result = search_log.execute
-      trace << result.hits.map { |r| MtaLog.new(r._source) }
-    end
+    trace = qids_trace.values
     trace.each do |l|
       l.sort! {|a,b| b.timestamp <=> a.timestamp }
     end
     @logtrace = trace.flatten
   end
-
+  
+  # Devuelve verdadero si hay un qmgr con estado removed
+  def processed?
+    qmgrs = relay_trace.select {|l| ( l.component == 'qmgr' && l.queuestatus == 'removed') }
+    qmgrs.any?
+  end
+  
+  # Permite saber cual es el elemento del hash qids_trace
+  # que contiene los logs de entrega
+  def relay_qid
+    qids_trace.keys.first
+  end
+  
+  # Devuelve un arreglo con los logs que
+  # corresponden a la entrega del mensaje
+  def relay_trace
+    qids_trace[relay_qid]
+  end
+  
   # Devuelve un arreglo con todos los QIDs del Message
   # Ordenado de mas nuevo a mas viejo
   def qids
@@ -75,7 +100,33 @@ class Message
     jail = account.itlinux? ? account.jail : []
     search_log = SearchLog.new jail: jail, query: query, s_date: s_date, e_date: e_date
     result = search_log.execute
+    result.hits.sort! {|a,b| Time.parse(b._source["@timestamp"]) <=> Time.parse(a._source["@timestamp"]) }
     @qids = result.hits.map { |r| r._source.qid }
+  end
+  
+  def qids_trace
+    return @qids_trace unless @qids_trace.empty?
+    s_date = timestamp.to_date.yesterday
+    e_date = timestamp.to_date.tomorrow
+    qids.each do |qid|
+      query = SearchLogQuery.by_qid(qid)
+      # Solo usamos Jail si es itlinux.cl, ya que es en base a host
+      # no podemos usarla en base a dominios ya que devuelve nada
+      jail = account.itlinux? ? account.jail : []
+      search_log = SearchLog.new jail: jail, query: query, s_date: s_date, e_date: e_date
+      result = search_log.execute
+      @qids_trace[qid] = result.hits.map { |r| MtaLog.new(r._source) }
+    end
+    @qids_trace
+  end
+  
+  # Devuelve un arreglo con los logs que
+  # corresponden a las entregas exitosas basado en
+  # el tag relay y result = sent
+  # usamos include porque puede ser un arreglo
+  def sent_trace
+    result = relay_trace.select {|l| ( l.tags.include?('relay') && l.result.include?('sent') ) }
+    result.nil? ? [] : result
   end
 
   def self.find(account, id)
