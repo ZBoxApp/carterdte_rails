@@ -7,7 +7,7 @@
       </span><br/>
         Para: <span class="message-to"><%= message.to %></span>
       <p style="margin-top: 5px;">
-        <%= I18n.l message.mta_message.timestamp, format: :short_seconds %>
+        <%= I18n.l message.mta_message.timestamp.in_time_zone(-3), format: :short_seconds %>
       </p>
       <span class="label label-default"> <%= display_msg_type message %> </span>
     </td>
