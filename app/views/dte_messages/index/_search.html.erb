@@ -1,6 +1,6 @@
 <div class="hpanel col-md-3">
     <div class="panel-body">
-      <%= search_form_for @message_search do |f| %>
+      <%= search_form_for @message_search, class: "search-form" do |f| %>
             <%= f.label "De" %>
             <%= f.search_field(
                 :from_or_rut_emisor_cont,

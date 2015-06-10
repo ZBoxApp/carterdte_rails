@@ -24,7 +24,8 @@ class MessagesController < ApplicationController
       to: params['to'],
       s_date: params['s_date'],
       e_date: params['e_date'],
-      page: params['page'].to_i
+      page: params['page'].to_i,
+      per_page: ( params['per_page'].to_i == 0 ? 25 : params['per_page'].to_i )
     )
   end
 

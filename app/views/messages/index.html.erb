@@ -1,13 +1,13 @@
-<%= render partial: "messages/index/search" %>
-
+<div class="row">
+  <%= render partial: "messages/index/search" %>
 <% if @messages.empty? %>
-  <div class="hpanel">
+  <div class="hpanel col-md-9">
     <div class="panel-body text-center">
       <h2>Ningún resultado para tu búsqueda</h2>
     </div>
   </div>
 <% else %>
-  <div class="hpanel">
+  <div class="hpanel col-md-9">
     <div class="panel-heading hbuilt">
       <div class="pull-right" style="padding-right: 10px;">
         <h4>
@@ -22,15 +22,14 @@
       </ul>
     </div>
     <div class="panel-body">
-      <div class="table-responsive">
-        <table cellpadding="1" cellspacing="1" class="table">
+      <div class="table">
+        <table class="table">
             <thead>
-            <tr>
-                <th></th>
-                <th>De</th>
-                <th>Para</th>
-                <th></th>
-            </tr>
+              <tr>
+                  <th></th>
+                  <th>Información</th>
+                  <th></th>
+              </tr>
             </thead>
             <tbody>
               <%= render partial: "messages/index/message", collection: @messages %>
@@ -69,3 +68,4 @@
     </div>
   </div>
 <% end %>
+</div>
