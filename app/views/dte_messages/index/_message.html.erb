@@ -1,5 +1,5 @@
 <tr>
-    <td class="delivery-status delivery-<%= message.mta_message.delivery_status %>">
+    <td class="delivery-status delivery-">
     </td>
     <td class="delivery-info">
       <span class="message-from">
@@ -7,7 +7,7 @@
       </span><br/>
         Para: <span class="message-to"><%= message.to %></span>
       <p style="margin-top: 5px;">
-        <%= I18n.l message.mta_message.timestamp.in_time_zone(-4), format: :short_seconds %>
+        <%= I18n.l message.sent_date.in_time_zone, format: :short_seconds %>
       </p>
       <span class="label label-default"> <%= display_msg_type message %> </span>
     </td>
