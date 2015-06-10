@@ -18,5 +18,15 @@ module MessagesHelper
       return "DTE"
     end
   end
+  
+  def display_log_field(field)
+    text = ""
+    if field.is_a? Array
+      text = field.uniq.join(", ")
+    else
+      text = field
+    end
+    text
+  end
 
 end

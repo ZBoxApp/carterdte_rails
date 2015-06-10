@@ -1,0 +1,22 @@
+<div class="hpanel">
+  <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#tab-1">Traza de correos</a></li>
+      <% if @message.has_bounces? %>
+        <li class=""><a data-toggle="tab" href="#tab-2">Rechazos</a></li>
+      <% end %>
+  </ul>
+  <div class="tab-content">
+    <div id="tab-1" class="tab-pane active">
+      <div class="panel-body">
+        <%= render :partial => "messages/show/mtalog_table", locals: {collection: @message.logtrace} %>
+      </div>
+    </div>
+    <% if @message.has_bounces? %>
+      <div id="tab-2" class="tab-pane">
+        <div class="panel-body">
+          <%= render :partial => "messages/show/bounce_table", locals: {collection: @message.bounce_trace} %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -21,6 +21,10 @@ class Message
     result.nil? ? [] : result
   end
   
+  def has_bounces?
+    bounce_trace.any?
+  end
+  
   # Devuelve un arreglo con los logs que
   # corresponden a las entregas en cola basado en
   # el tag relay y result = deferred

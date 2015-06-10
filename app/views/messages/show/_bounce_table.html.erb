@@ -1,0 +1,26 @@
+<div class="table-responsive">
+  <table cellpadding="1" cellspacing="1" class="table table-striped mtalog">
+    <thead>
+      <tr>
+        <th>Destino</th>
+        <th>Respuesta del servidor destino</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.each do |log| %>
+        <tr>
+          <td>
+            <ul class="list-unstyled">
+              <li><h4><%= display_log_field log.to %></h4></li>
+              <li><h5><%= display_log_field log.dst_relayip %></h5></li>
+              <li><%= I18n.l log.timestamp.in_time_zone(-3), format: :log %></li>
+            </ul>            
+          </td>
+          <td>
+            <%= log.reason %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
