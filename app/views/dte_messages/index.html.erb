@@ -36,7 +36,7 @@
             </tbody>
         </table>
       </div>
-      <%= render :partial => "dte_messages/index/pagination" %>
+      <%= render :partial => "messages/index/pagination", locals: {results: @messages} %>
     </div>
   </div>
 <% end %>

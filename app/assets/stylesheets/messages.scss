@@ -109,3 +109,23 @@ $bg-info-color: #3498db;
     margin-top: 10px;
   }
 }
+
+.pagination {
+  li.elipsis {
+    a {
+      @extend .active;
+      color: rgb(119, 119, 119);
+      background: white;
+      border-color: rgb(221, 221, 221);
+    }
+    
+    a:hover {
+      color: rgb(119, 119, 119);
+      background: white;
+      border-color: rgb(221, 221, 221);
+    }
+  }
+  
+  
+  
+}

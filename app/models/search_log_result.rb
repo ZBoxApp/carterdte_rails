@@ -37,5 +37,13 @@ class SearchLogResult
     return false if current_page == 1
     current_page - 1
   end
+  
+  def total_pages
+    pages
+  end
+  
+  def prev_page
+    previous_page
+  end
 
 end

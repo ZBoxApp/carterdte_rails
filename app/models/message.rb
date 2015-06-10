@@ -138,19 +138,12 @@ class Message
     msg = search.hits.first
     Message.new(id: msg._id, source: msg._source, account_id: account.id)
   end
-  
-  def self.from_by_page(pnumber = nil)
-    return 0 if pnumber.nil?
-    return 0 if pnumber <= 1
-    from = ((pnumber.to_i - 1) * SearchLog::SEARCH_SIZE) + 1
-    from
-  end
 
-  def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil, page: 1, per_page: 25)
+  def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil, page: 1, from_page:1, per_page: 25)
     fail '<Message#search> Account nil' unless account.is_a? Account
     query = SearchLogQuery.amavisd_by_emails(from: from, to: to)
     search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
-    result = search_log.execute(from_by_page(page), per_page)
+    result = search_log.execute(from_page, per_page)
     result.results = result.hits.map { |r| Message.new(id: r._id, source: r._source, account_id: account.id) }
     result
   end

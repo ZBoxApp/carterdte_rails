@@ -28,5 +28,12 @@ module MessagesHelper
     end
     text
   end
+  
+  def pagination_link(page)
+    new_params = params.merge(page: page)
+    new_params.delete('action')
+    new_params.delete('controller')
+    send("#{params[:controller]}_path", new_params)
+  end
 
 end
