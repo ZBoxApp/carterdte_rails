@@ -11,6 +11,12 @@ class MtaLog
   def method_missing(m, *args, &block)
     @data[m]
   end
+  
+  def bounce?
+    return true if (tags.include?('relay') && result.include?('bounced'))
+    return true if component == 'bounce'
+    false
+  end
 
   private
 
