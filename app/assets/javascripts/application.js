@@ -14,7 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require turboboost
 //= require bootstrap-sprockets
 //= require homer/charts
 //= require homer/homer
@@ -29,3 +28,9 @@
 //= require homer/sparkline
 //= require bootstrap-datepicker
 //= require_tree .
+
+
+$(document).on("submit", "form[data-turboform]", function(e) {
+    Turbolinks.visit(this.action+(this.action.indexOf('?') == -1 ? '?' : '&')+$(this).serialize());
+    return false;
+});

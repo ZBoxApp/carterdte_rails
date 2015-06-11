@@ -7,9 +7,19 @@ documentReady = ->
   $("#datepicker").datepicker({
     format: 'dd/mm/yyyy'
     })
+    
   $(".datepicker").datepicker({
     format: 'dd/mm/yyyy'
     })
+    
+startSpinner = ->
+    $("#searching-modal").modal('show')
+    
+stopSpinner = ->
+    $("#searching-modal").modal('hide')
+    
+$(document).on "page:fetch", startSpinner
+$(document).on "page:receive", stopSpinner
 
 $(document).ready documentReady
 $(document).on "page:load", documentReady

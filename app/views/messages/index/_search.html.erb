@@ -1,6 +1,7 @@
+<%= render :partial => "shared/searching_modal" %>
 <div class="hpanel col-md-3">
     <div class="panel-body">
-      <%= form_tag '', method: :get, class: "search-form" do %>
+      <%= form_tag '', method: :get, class: "search-form", data: {turboform: true} do %>
             <%= label_tag "De" %>
             <%= email_field_tag(
                 :from,
