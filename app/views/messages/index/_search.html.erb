@@ -3,31 +3,31 @@
     <div class="panel-body">
       <%= form_tag '', method: :get, class: "search-form", data: {turboform: true} do %>
             <%= label_tag "De" %>
-            <%= email_field_tag(
+            <%= text_field_tag(
                 :from,
                 params[:from],
-                placeholder: "remitente@domain.com",
+                placeholder: "dominio o email",
                 class: "form-control"
             ) %>
             <%= label_tag "Para" %>
-            <%= email_field_tag(
+            <%= text_field_tag(
                 :to,
                 params[:to],
-                placeholder: "para@domain.com",
+                placeholder: "dominio o email",
                 class: "form-control"
             ) %>
             <%= label_tag "Desde" %>
             <%= text_field_tag(
                 :s_date,
                 params[:s_date],
-                placeholder: I18n.l(Date.today),
+                placeholder: 'dd/mm/aaaa',
                 class: "form-control datepicker"
             ) %>
             <%= label_tag "Hasta" %>
             <%= text_field_tag(
                 :e_date,
                 params[:e_date],
-                placeholder: I18n.l(Date.today),
+                placeholder: 'dd/mm/aaaa',
                 class: "form-control datepicker"
             ) %>
             <%= label_tag "Resultados x página" %>

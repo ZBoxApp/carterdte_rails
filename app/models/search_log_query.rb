@@ -20,11 +20,10 @@ module SearchLogQuery
   end
 
   def self.amavisd_by_emails(from: nil, to: nil)
-    [{ 'tags' => 'amavis' },
-     { 'tags' => 'result' },
-     { 'from' => from },
-     { 'to' => to }
-    ]
+    ary = [{ 'tags' => 'amavis' }, { 'tags' => 'result' }]
+    ary << domain_or_email('from', from)
+    ary << domain_or_email('to', to)
+    ary
   end
 
   def self.amavis_by_domains(from_domain: nil, to_domain: nil)
@@ -33,6 +32,14 @@ module SearchLogQuery
      { 'from_domain' => from_domain },
      { 'to_domain' => to_domain }
     ]
+  end
+  
+  def self.domain_or_email(field, query)
+    is_email?(query) ? { field => query} : { "#{field}_domain" => query }
+  end
+  
+  def self.is_email?(string)
+    !!(string =~ /\A\S+@.+\.\S+\z/)
   end
 
 end
