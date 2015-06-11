@@ -11,5 +11,5 @@
       </p>
       <span class="label label-default"> <%= display_msg_type message %> </span>
     </td>
-    <td> <%= link_to "Ver traza", dte_message_path(message), class: 'btn btn-default' %> </td>
+    <td> <%= link_to "Ver traza", dte_message_path(message), class: 'btn btn-default', data: {"no-turbolink" => true } %> </td>
 </tr>

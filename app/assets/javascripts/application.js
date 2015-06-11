@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
+//= require turboboost
 //= require bootstrap-sprockets
 //= require homer/charts
 //= require homer/homer

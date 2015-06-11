@@ -23,7 +23,7 @@
     </div>
     <div class="panel-body">
       <div class="table">
-        <table class="table">
+        <table class="table" id="messages-table">
             <thead>
               <tr>
                   <th></th>
@@ -31,12 +31,14 @@
                   <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="messages-rows">
               <%= render partial: "messages/index/message", collection: @messages %>
             </tbody>
         </table>
       </div>
-      <%= render :partial => "messages/index/pagination", locals: {results: @messages_search} %>
+      <div id="pagination">
+        <%= render :partial => "messages/index/pagination", locals: {results: @messages_search} %>
+      </div>
     </div>
   </div>
 <% end %>
