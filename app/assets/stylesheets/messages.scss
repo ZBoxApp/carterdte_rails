@@ -124,8 +124,10 @@ $bg-info-color: #3498db;
       background: white;
       border-color: rgb(221, 221, 221);
     }
-  }
-  
-  
-  
+  } 
+}
+
+.bounce-log {
+  background: $bg-error-color;
+  color: white;
 }

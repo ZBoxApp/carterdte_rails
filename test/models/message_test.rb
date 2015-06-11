@@ -23,8 +23,7 @@ class MessageTest < ActiveSupport::TestCase
 
   test 'result should respond to the apropiate info' do
     @base_query[:account] = @admin_account
-    search = Message.search(@base_query)
-    msg = search.results.first
+    msg = Message.find(@admin_account, 'AU1fK5QmnuGUxTCvj0lc')
     assert_equal 'AU1fK5QmnuGUxTCvj0lc', msg.id
     assert_equal 'af634e4ea6a3dcbe2994a930dc8ad5eb8b8.20150516235926@mail64.atl71.mcdlv.net', msg.messageid
     assert_equal 'bounce-mc.us10_41744441.191829-JAMORANDE=KIKE21.CL@mail64.atl71.mcdlv.net', msg.from
@@ -146,6 +145,8 @@ class MessageTest < ActiveSupport::TestCase
     msg.qids_trace[msg.relay_qid][1].data['result'] = 'bounced'
     exp = msg.bounce_trace.first
     assert(exp.result.include?('bounced'), "Deberia tener un bounced")
+    msg.qids_trace[msg.relay_qid][1].data['component'] = 'bounce'
+    assert(msg.bounce_trace.any?, 'Deberia tomar bounce')
   end
   
   test 'deferred_trace should return an array of logs with relay tag and result deferred' do
