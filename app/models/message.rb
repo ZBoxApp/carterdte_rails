@@ -17,8 +17,10 @@ class Message
   # corresponden a las entregas fallidas basado en
   # el tag relay y result = bounced
   def bounce_trace
-    result = relay_trace.select { |l| ( l.tags.include?('relay') && l.result.include?('bounced')) }
-    result.nil? ? [] : result
+    result = []
+    result << relay_trace.select { |l| ( l.tags.include?('relay') && l.result.include?('bounced')) }
+    result << relay_trace.select { |l| l.component == 'bounce' }
+    result.nil? ? [] : result.flatten.compact
   end
   
   def has_bounces?
