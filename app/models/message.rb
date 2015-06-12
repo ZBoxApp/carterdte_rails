@@ -107,7 +107,7 @@ class Message
     search_log = SearchLog.new jail: jail, query: query, s_date: s_date, e_date: e_date
     result = search_log.execute
     result.hits.sort! {|a,b| Time.parse(b._source["@timestamp"]) <=> Time.parse(a._source["@timestamp"]) }
-    @qids = result.hits.map { |r| r._source.qid }.slice(0,3)
+    @qids = result.hits.map { |r| r._source.qid }
   end
   
   def qids_trace
