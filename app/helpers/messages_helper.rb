@@ -35,5 +35,22 @@ module MessagesHelper
     new_params.delete('controller')
     send("#{params[:controller]}_path", new_params)
   end
+  
+  def pages_link_array(current, total)
+    delta = total - current
+    return (current..current + 5).to_a if delta > 5
+    return (current..total - 1).to_a  if delta <= 5
+  end
+  
+  def show_upper_elipsis?(current, total)
+    delta = total - pages_link_array(current, total).last
+    return true if delta > 1
+    false
+  end
+  
+  def show_down_elipsis?(current)
+    return true if current > 2
+    false
+  end
 
 end

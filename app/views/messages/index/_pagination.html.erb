@@ -1,29 +1,35 @@
-<nav class="text-center">
-  <ul class="pagination">
-    <li>
-      <%= link_to pagination_link(results.prev_page) do %>
-        <span aria-hidden="true">&laquo;</span></a>
-      <% end %>
-    </li>
-    <% if results.current_page > 4 %>
-      <li><%= link_to "1", pagination_link(1) %></li>
-      <li class="active elipsis"><a href="#">...</a></li>
-    <% end %>
-    <% (results.current_page..results.current_page + 6).to_a.each do |page| %>
-      <li class="<%= page == results.current_page ? 'active' : ''  %>">
-        <%= link_to page, pagination_link(page) %>
+<% unless results.total_pages < 2%>
+  <nav class="text-center">
+    <ul class="pagination">
+      <li>
+        <%= link_to pagination_link(results.prev_page) do %>
+          <span aria-hidden="true">&laquo;</span></a>
+        <% end %>
       </li>
-    <% end %>
-    <li class="active elipsis"><a href="#" style="background: white">...</a></li>
-    <li>
-      <%= link_to pagination_link(results.total_pages) do %>
-        <%= results.total_pages %>
+      <% unless results.current_page == 1%>
+        <li><%= link_to "1", pagination_link(1) %></li>
       <% end %>
-    </li>
-    <li>
-      <%= link_to pagination_link(results.next_page) do %>
-        <span aria-hidden="true">&raquo;</span>
+      <% if show_down_elipsis?(results.current_page) %>
+        <li class="active elipsis"><a href="#">...</a></li>
       <% end %>
-    </li>
-  </ul>
-</nav>
+      <% pages_link_array(results.current_page, results.total_pages).each do |page| %>
+        <li class="<%= page == results.current_page ? 'active' : ''  %>">
+          <%= link_to page, pagination_link(page) %>
+        </li>
+      <% end %>
+      <% if show_upper_elipsis?(results.current_page, results.total_pages)%>
+        <li class="active elipsis"><a href="#" style="background: white">...</a></li>
+      <% end %>
+      <li>
+        <%= link_to pagination_link(results.total_pages) do %>
+          <%= results.total_pages %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to pagination_link(results.next_page) do %>
+          <span aria-hidden="true">&raquo;</span>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+<% end %>
