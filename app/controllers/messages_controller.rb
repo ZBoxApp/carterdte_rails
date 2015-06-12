@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   def search(params)
     params = procces_params params
     per_page = params['per_page'].to_i == 0 ? 25 : params['per_page'].to_i
-    from_page = params['page'].to_i == 0 ? 1 : (((params['page'].to_i - 1) * per_page) + 1)
+    from_page = params['page'].to_i == 0 ? 0 : (((params['page'].to_i - 1) * per_page) + 1)
     Message.search(
       account: current_account,
       from: params['from'],
