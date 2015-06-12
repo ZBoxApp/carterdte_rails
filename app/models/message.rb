@@ -141,7 +141,7 @@ class Message
     Message.new(id: msg._id, source: msg._source, account_id: account.id)
   end
 
-  def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil, page: 1, from_page:1, per_page: 25)
+  def self.search(account: nil, from: nil, to: nil, s_date: nil, e_date: nil, page: 1, from_page:0, per_page: 25)
     fail '<Message#search> Account nil' unless account.is_a? Account
     query = SearchLogQuery.amavisd_by_emails(from: from, to: to)
     search_log = SearchLog.new jail: account.jail, query: query, s_date: s_date, e_date: e_date
