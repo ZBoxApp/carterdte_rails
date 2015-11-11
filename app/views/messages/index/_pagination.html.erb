@@ -21,7 +21,7 @@
         <li class="active elipsis"><a href="#" style="background: white">...</a></li>
       <% end %>
       <li>
-        <%= link_to pagination_link(results.total_pages) do %>
+        <%= link_to pagination_link(results.total_pages - 1) do %>
           <%= results.total_pages %>
         <% end %>
       </li>

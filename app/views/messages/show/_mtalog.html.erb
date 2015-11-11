@@ -1,5 +1,5 @@
 <tr class="<%= mtalog.bounce? ? 'bounce-log' : '' %>">
-    <td class="col-md-2"> <%= I18n.l mtalog.timestamp.in_time_zone(-3), format: :log %> </td>
+    <td class="col-md-2"> <%= I18n.l mtalog.timestamp.in_time_zone(app_time_zone), format: :log %> </td>
     <td class="col-md-2"> <%= mtalog.host %> </td>
     <td> <%= mtalog.clean_message %> </td>
 </tr>

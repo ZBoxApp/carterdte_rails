@@ -13,8 +13,8 @@
             <ul class="list-unstyled">
               <li><strong><%= display_log_field log.to %></strong></li>
               <li><%= display_log_field log.dst_relayip %></li>
-              <li><%= I18n.l log.timestamp.in_time_zone(-3), format: :log %></li>
-            </ul>            
+              <li><%= I18n.l log.timestamp.in_time_zone(app_time_zone), format: :log %></li>
+            </ul>
           </td>
           <td>
             <%= log.reason %>
