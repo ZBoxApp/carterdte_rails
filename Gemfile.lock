@@ -1,3 +1,22 @@
+GIT
+  remote: git://github.com/pbruna/omniauth-zimbra.git
+  revision: 18282f5f48d33f158e0ad5aeff464e65c89684ac
+  branch: master
+  specs:
+    omniauth-zimbraadmin (0.0.4.1)
+      omniauth (~> 1.0)
+      zimbra-soap-api (~> 0.7)
+
+GIT
+  remote: git://github.com/pbruna/ruby-zimbra.git
+  revision: e8b379921ba0cbaab22d0af2eaab9eb94ab1c588
+  branch: master
+  specs:
+    zimbra-soap-api (0.7.28)
+      curb
+      handsoap
+      nokogiri
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -66,6 +85,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    curb (0.9.0)
     debug_inspector (0.0.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
@@ -122,11 +142,11 @@ GEM
       minitest (>= 3.0)
     guard-rails (0.7.0)
       guard (~> 2.0)
+    handsoap (1.4.0)
     hashie (3.4.1)
     hitimes (1.2.2)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    inflection (1.0.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -161,7 +181,7 @@ GEM
       ruby-progressbar
     multi_json (1.11.0)
     multipart-post (2.0.0)
-    mysql2 (0.3.17)
+    mysql2 (0.3.20)
     nenv (0.2.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -171,9 +191,6 @@ GEM
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
-    omniauth-zendesk (0.1.3)
-      omniauth (> 1.0)
-      zendesk_api (> 0.2.2)
     orm_adapter (0.5.0)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
@@ -269,13 +286,6 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-    zendesk_api (1.7.4)
-      faraday (~> 0.9)
-      hashie (>= 1.2, < 4.0, != 3.3.0)
-      inflection
-      mime-types
-      multi_json
-      multipart-post (~> 2.0)
 
 PLATFORMS
   ruby
@@ -300,9 +310,9 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   minitest-reporters
-  mysql2
+  mysql2 (~> 0.3.20)
   omniauth
-  omniauth-zendesk
+  omniauth-zimbraadmin!
   rails (= 4.2.1)
   ransack
   sass-rails (~> 5.0)
@@ -314,4 +324,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   waistband
   web-console (~> 2.0)
-  zendesk_api
+  zimbra-soap-api!

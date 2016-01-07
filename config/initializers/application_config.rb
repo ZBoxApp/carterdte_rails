@@ -1,0 +1,1 @@
+CarterdteRails.config.zimbra_soap_url = 'https://mail.zboxapp.com:9071/service/admin/soap'

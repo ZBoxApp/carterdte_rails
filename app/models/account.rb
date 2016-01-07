@@ -43,19 +43,4 @@ class Account < ActiveRecord::Base
     }
   end
 
-
-  def self.zendesk_client
-    @zendesk_client ||= ZendeskAPI::Client.new do |config|
-      # Mandatory:
-
-      config.url = "#{Figaro.env.zendesk_url}/api/v2"
-
-      # Basic / Token Authentication
-      config.username = Figaro.env.zendesk_username
-
-      # Choose one of the following depending on your authentication choice
-      config.token = Figaro.env.zendesk_token
-    end
-  end
-
 end

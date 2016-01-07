@@ -72,7 +72,7 @@ class AccountsController < ApplicationController
     end
     
     def validate_admin
-      return head :forbidden unless current_account.admin?
+      return head :forbidden unless current_user.admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
