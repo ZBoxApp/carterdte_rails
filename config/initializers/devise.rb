@@ -234,7 +234,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :zimbraadmin, :endpoint => CarterdteRails.config.zimbra_soap_url,
-    :form =>  SessionsController.action(:new), model: :session,
+    :form =>  SessionsController.action(:new), model: :session, debug: true,
     :zimbra_attributes => [ 'zimbraId', 'zimbraIsAdminAccount', 'zimbraIsDelegatedAdminAccount', 'displayName']
   
 
